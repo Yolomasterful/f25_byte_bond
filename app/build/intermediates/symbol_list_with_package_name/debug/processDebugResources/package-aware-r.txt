@@ -133,6 +133,7 @@ id is_pooling_container_tag
 id italic
 id line1
 id line3
+id main
 id normal
 id notification_background
 id notification_main_column
@@ -141,6 +142,7 @@ id pooling_container_listener_holder_tag
 id report_drawn
 id right_icon
 id right_side
+id showInput
 id tag_accessibility_actions
 id tag_accessibility_clickable_spans
 id tag_accessibility_heading
@@ -168,6 +170,7 @@ id view_tree_view_model_store_owner
 id wrapped_composition_tag
 integer m3c_window_layout_in_display_cutout_mode
 integer status_bar_notification_info_maxnum
+layout activity_main
 layout custom_dialog
 layout ime_base_split_test_activity
 layout ime_secondary_split_test_activity
