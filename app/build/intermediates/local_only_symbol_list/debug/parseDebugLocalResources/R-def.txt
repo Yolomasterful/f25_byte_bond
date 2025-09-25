@@ -9,8 +9,6 @@ color teal_700
 color white
 drawable ic_launcher_background
 drawable ic_launcher_foreground
-id textView
-layout activity_main
 mipmap ic_launcher
 mipmap ic_launcher_round
 mipmap macewan_logo
