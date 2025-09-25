@@ -13,22 +13,30 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.myapplication.ui.theme.MyApplicationTheme
 
-class MainActivity : AppCompatActivity() {
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.foundation.layout.Column
+import androidx.compose.material3.Button
+import androidx.compose.material3.TextField
+
+
+class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        //setContentView(R.layout.activity_main)
 
 
-        /* setContent {
+        setContent {
             MyApplicationTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
                     Greeting(
                         name = "Android",
                         modifier = Modifier.padding(innerPadding)
                     )
+                    LoginScreen()
                 }
             }
-        } */
+        }
     }
 }
 
@@ -40,4 +48,21 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
         text = "$name",
         modifier = modifier
     )
+}
+
+@Composable
+fun LoginScreen() {
+    val email = remember { mutableStateOf("") } 
+
+    Column {
+        TextField(
+            value = email.value,
+            onValueChange = { email.value = it },
+            placeholder = { Text("Email") }
+        )
+
+        Button(onClick = { /* login */ }) {
+            Text("Login")
+        }
+    }
 }

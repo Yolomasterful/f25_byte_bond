@@ -1,22 +1,10 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http:// schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/main"
-    android:gravity="center"
-    android:orientation="vertical"
-    tools:context=".MainActivity">
-
-    <!--Button with id showInput-->
-    <Button
-        android:id="@+id/showInput"
+    android:orientation="vertical">
+    <TextView
+        android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:text="show"
-        android:backgroundTint="@color/black"
-        android:textColor="@android:color/white"/>
-
+        android:text="Hello, World!" />
 </LinearLayout>

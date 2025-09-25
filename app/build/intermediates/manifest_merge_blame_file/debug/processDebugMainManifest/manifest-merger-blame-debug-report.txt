@@ -31,12 +31,12 @@
 22        android:extractNativeLibs="false"
 23        android:fullBackupContent="@xml/backup_rules"
 23-->/home/logankerr/VisualStudioCode/CMPT/CMPT_395/f25_byte_bond/app/src/main/AndroidManifest.xml:8:9-54
-24        android:icon="@mipmap/ic_launcher"
-24-->/home/logankerr/VisualStudioCode/CMPT/CMPT_395/f25_byte_bond/app/src/main/AndroidManifest.xml:9:9-43
+24        android:icon="@mipmap/macewan_logo"
+24-->/home/logankerr/VisualStudioCode/CMPT/CMPT_395/f25_byte_bond/app/src/main/AndroidManifest.xml:9:9-44
 25        android:label="@string/app_name"
 25-->/home/logankerr/VisualStudioCode/CMPT/CMPT_395/f25_byte_bond/app/src/main/AndroidManifest.xml:10:9-41
-26        android:roundIcon="@mipmap/ic_launcher_round"
-26-->/home/logankerr/VisualStudioCode/CMPT/CMPT_395/f25_byte_bond/app/src/main/AndroidManifest.xml:11:9-54
+26        android:roundIcon="@mipmap/macewan_logo_round"
+26-->/home/logankerr/VisualStudioCode/CMPT/CMPT_395/f25_byte_bond/app/src/main/AndroidManifest.xml:11:9-55
 27        android:supportsRtl="true"
 27-->/home/logankerr/VisualStudioCode/CMPT/CMPT_395/f25_byte_bond/app/src/main/AndroidManifest.xml:12:9-35
 28        android:theme="@style/Theme.MyApplication" >

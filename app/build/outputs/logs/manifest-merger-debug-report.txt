@@ -93,9 +93,9 @@ MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /home/logan
 	android:fullBackupContent
 		ADDED from /home/logankerr/VisualStudioCode/CMPT/CMPT_395/f25_byte_bond/app/src/main/AndroidManifest.xml:8:9-54
 	android:roundIcon
-		ADDED from /home/logankerr/VisualStudioCode/CMPT/CMPT_395/f25_byte_bond/app/src/main/AndroidManifest.xml:11:9-54
+		ADDED from /home/logankerr/VisualStudioCode/CMPT/CMPT_395/f25_byte_bond/app/src/main/AndroidManifest.xml:11:9-55
 	android:icon
-		ADDED from /home/logankerr/VisualStudioCode/CMPT/CMPT_395/f25_byte_bond/app/src/main/AndroidManifest.xml:9:9-43
+		ADDED from /home/logankerr/VisualStudioCode/CMPT/CMPT_395/f25_byte_bond/app/src/main/AndroidManifest.xml:9:9-44
 	android:allowBackup
 		ADDED from /home/logankerr/VisualStudioCode/CMPT/CMPT_395/f25_byte_bond/app/src/main/AndroidManifest.xml:6:9-35
 	android:theme
