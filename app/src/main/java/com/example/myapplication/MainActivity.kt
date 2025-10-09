@@ -4,6 +4,40 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.layout.*
+import androidx.compose.material3.Button
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Text
+import androidx.compose.material3.TextField
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
+
+import android.widget.Toast
+import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.setValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.text.input.VisualTransformation
+import androidx.compose.ui.text.input.ImeAction
+import androidx.compose.ui.res.painterResource
+
+import com.example.myapplication.ui.theme.MyApplicationTheme
+
+/* import android.os.Bundle
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
+import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
@@ -21,15 +55,15 @@ import androidx.compose.ui.*
 import androidx.compose.ui.graphics.*
 // import androidx.compose.ui.*
 
-/* import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width */
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.dp */
 
 
 class MainActivity : ComponentActivity() {
@@ -41,10 +75,6 @@ class MainActivity : ComponentActivity() {
         setContent {
             MyApplicationTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android App",
-                        modifier = Modifier.padding(innerPadding)
-                    )
                     LoginScreen()
                 }
             }
@@ -52,29 +82,50 @@ class MainActivity : ComponentActivity() {
     }
 }
 
-
-
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "$name",
-        modifier = modifier
-    )
-}
-
 @Composable
 fun LoginScreen() {
-    val email = remember { mutableStateOf("") } 
+    val context = LocalContext.current
+    var email by remember { mutableStateOf("") }
+    var password by remember { mutableStateOf("") }
+    var passwordVisible by remember { mutableStateOf(false) }
 
-    Column(modifier=Modifier.fillMaxSize)
-    {
+    Column(
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally,
+        modifier = Modifier.fillMaxWidth().padding(16.dp)
+    ) {
         TextField(
-            value = email.value,
-            onValueChange = { email.value = it },
-            placeholder = { Text("Email") }
+            value = email,
+            onValueChange = { email = it },
+            placeholder = { Text("Email") },
+            modifier = Modifier.fillMaxWidth(),
+            keyboardOptions = KeyboardOptions.Default.copy(imeAction = ImeAction.Next)
         )
 
-        Button(onClick = { /* login */ }) {
+        Spacer(modifier = Modifier.height(8.dp))
+
+        TextField(
+            value = password,
+            onValueChange = { password = it },
+            placeholder = { Text("Password") },
+            modifier = Modifier.fillMaxWidth(),
+            visualTransformation = if (passwordVisible) VisualTransformation.None else PasswordVisualTransformation(),
+            trailingIcon = {
+                IconButton(onClick = { passwordVisible = !passwordVisible }) {
+                    Icon(
+                        painter = painterResource(id = if (passwordVisible) android.R.drawable.ic_menu_close_clear_cancel else android.R.drawable.ic_menu_view),
+                        contentDescription = if (passwordVisible) "Hide password" else "Show password"
+                    )
+                }
+            },
+            keyboardOptions = KeyboardOptions.Default.copy(imeAction = ImeAction.Done)
+        )
+
+        Spacer(modifier = Modifier.height(8.dp))
+
+        Button(onClick = {
+            Toast.makeText(context, "Email: $email\nPassword: $password", Toast.LENGTH_LONG).show()
+        }) {
             Text("Login")
         }
     }
