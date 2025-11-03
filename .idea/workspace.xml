@@ -16,10 +16,9 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="193d9b95-0f51-44ef-beb1-de87a45071f7" name="Changes" comment="Organized the code according to the folder structures, and imported the login screen into another folder.">
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/myapplication/MainActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/myapplication/MainActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/myapplication/ui/theme/Theme.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/myapplication/ui/theme/Theme.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/myapplication/ui/theme/Type.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/myapplication/ui/theme/Type.kt" afterDir="false" />
+    <list default="true" id="193d9b95-0f51-44ef-beb1-de87a45071f7" name="Changes" comment="Completed the dahsboards, select usertype page, made changes to the login page, and changed the theme.">
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/myapplication/ui/theme/AdminDashb/AdminLogin.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/myapplication/ui/theme/AdminDashb/AdminLogin.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/myapplication/ui/theme/studentDashb/StudentLogin.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/myapplication/ui/theme/studentDashb/StudentLogin.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -288,7 +287,15 @@
       <option name="project" value="LOCAL" />
       <updated>1762156423510</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Completed the dahsboards, select usertype page, made changes to the login page, and changed the theme.">
+      <option name="closed" value="true" />
+      <created>1762156709175</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1762156709175</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -304,7 +311,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Organized the code according to the folder structures, and imported the login screen into another folder." />
-    <option name="LAST_COMMIT_MESSAGE" value="Organized the code according to the folder structures, and imported the login screen into another folder." />
+    <MESSAGE value="Completed the dahsboards, select usertype page, made changes to the login page, and changed the theme." />
+    <option name="LAST_COMMIT_MESSAGE" value="Completed the dahsboards, select usertype page, made changes to the login page, and changed the theme." />
   </component>
   <component name="play_dynamic_filters_status">
     <option name="appIdToCheckInfo">
