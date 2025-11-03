@@ -8,6 +8,10 @@
         "source": "com.example.myapplication.app-main-44:/mipmap-xxxhdpi/macewan_logo_round.png"
     },
     {
+        "merged": "com.example.myapplication.app-debug-42:/mipmap-xxxhdpi_backarrow.png.flat",
+        "source": "com.example.myapplication.app-main-44:/mipmap-xxxhdpi/backarrow.png"
+    },
+    {
         "merged": "com.example.myapplication.app-debug-42:/xml_data_extraction_rules.xml.flat",
         "source": "com.example.myapplication.app-main-44:/xml/data_extraction_rules.xml"
     },
@@ -22,6 +26,10 @@
     {
         "merged": "com.example.myapplication.app-debug-42:/drawable_ic_launcher_foreground.xml.flat",
         "source": "com.example.myapplication.app-main-44:/drawable/ic_launcher_foreground.xml"
+    },
+    {
+        "merged": "com.example.myapplication.app-debug-42:/mipmap-xxxhdpi_mainpage.png.flat",
+        "source": "com.example.myapplication.app-main-44:/mipmap-xxxhdpi/mainpage.png"
     },
     {
         "merged": "com.example.myapplication.app-debug-42:/xml_backup_rules.xml.flat",
