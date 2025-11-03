@@ -16,7 +16,6 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.material3.TopAppBar
 import androidx.compose.foundation.Image
-import com.example.myapplication.ui.theme.LoginScreen
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
@@ -33,7 +32,7 @@ import com.example.myapplication.ui.theme.studentDashb.SDashboard
 import com.example.myapplication.ui.theme.professorDashb.PfDashboard
 import com.example.myapplication.ui.theme.professorDashb.ProfessorLogin
 import com.example.myapplication.ui.theme.ProctorDashb.ProctorLogin
-//import androidx.compose.foundation.layout.size
+
 
 
 //Class structure of the app
