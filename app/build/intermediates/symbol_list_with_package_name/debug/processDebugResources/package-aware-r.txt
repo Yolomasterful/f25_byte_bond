@@ -201,10 +201,12 @@ layout notification_template_custom_big
 layout notification_template_icon_group
 layout notification_template_part_chronometer
 layout notification_template_part_time
+mipmap backarrow
 mipmap ic_launcher
 mipmap ic_launcher_round
 mipmap macewan_logo
 mipmap macewan_logo_round
+mipmap mainpage
 string androidx_startup
 string app_name
 string autofill
