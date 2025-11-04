@@ -1,42 +1,42 @@
 [
     {
-        "merged": "com.example.myapplication.app-debug-42:/mipmap-anydpi-v26_ic_launcher_round.xml.flat",
-        "source": "com.example.myapplication.app-main-44:/mipmap-anydpi-v26/ic_launcher_round.xml"
+        "merged": "com.example.myapplication.app-debug-41:/mipmap-xxxhdpi_macewan_logo.png.flat",
+        "source": "com.example.myapplication.app-main-43:/mipmap-xxxhdpi/macewan_logo.png"
     },
     {
-        "merged": "com.example.myapplication.app-debug-42:/mipmap-xxxhdpi_macewan_logo_round.png.flat",
-        "source": "com.example.myapplication.app-main-44:/mipmap-xxxhdpi/macewan_logo_round.png"
+        "merged": "com.example.myapplication.app-debug-41:/drawable_ic_launcher_background.xml.flat",
+        "source": "com.example.myapplication.app-main-43:/drawable/ic_launcher_background.xml"
     },
     {
-        "merged": "com.example.myapplication.app-debug-42:/mipmap-xxxhdpi_backarrow.png.flat",
-        "source": "com.example.myapplication.app-main-44:/mipmap-xxxhdpi/backarrow.png"
+        "merged": "com.example.myapplication.app-debug-41:/mipmap-anydpi-v26_ic_launcher_round.xml.flat",
+        "source": "com.example.myapplication.app-main-43:/mipmap-anydpi-v26/ic_launcher_round.xml"
     },
     {
-        "merged": "com.example.myapplication.app-debug-42:/xml_data_extraction_rules.xml.flat",
-        "source": "com.example.myapplication.app-main-44:/xml/data_extraction_rules.xml"
+        "merged": "com.example.myapplication.app-debug-41:/xml_data_extraction_rules.xml.flat",
+        "source": "com.example.myapplication.app-main-43:/xml/data_extraction_rules.xml"
     },
     {
-        "merged": "com.example.myapplication.app-debug-42:/mipmap-anydpi-v26_ic_launcher.xml.flat",
-        "source": "com.example.myapplication.app-main-44:/mipmap-anydpi-v26/ic_launcher.xml"
+        "merged": "com.example.myapplication.app-debug-41:/drawable_ic_launcher_foreground.xml.flat",
+        "source": "com.example.myapplication.app-main-43:/drawable/ic_launcher_foreground.xml"
     },
     {
-        "merged": "com.example.myapplication.app-debug-42:/mipmap-xxxhdpi_macewan_logo.png.flat",
-        "source": "com.example.myapplication.app-main-44:/mipmap-xxxhdpi/macewan_logo.png"
+        "merged": "com.example.myapplication.app-debug-41:/mipmap-xxxhdpi_mainpage.png.flat",
+        "source": "com.example.myapplication.app-main-43:/mipmap-xxxhdpi/mainpage.png"
     },
     {
-        "merged": "com.example.myapplication.app-debug-42:/drawable_ic_launcher_foreground.xml.flat",
-        "source": "com.example.myapplication.app-main-44:/drawable/ic_launcher_foreground.xml"
+        "merged": "com.example.myapplication.app-debug-41:/mipmap-anydpi-v26_ic_launcher.xml.flat",
+        "source": "com.example.myapplication.app-main-43:/mipmap-anydpi-v26/ic_launcher.xml"
     },
     {
-        "merged": "com.example.myapplication.app-debug-42:/mipmap-xxxhdpi_mainpage.png.flat",
-        "source": "com.example.myapplication.app-main-44:/mipmap-xxxhdpi/mainpage.png"
+        "merged": "com.example.myapplication.app-debug-41:/xml_backup_rules.xml.flat",
+        "source": "com.example.myapplication.app-main-43:/xml/backup_rules.xml"
     },
     {
-        "merged": "com.example.myapplication.app-debug-42:/xml_backup_rules.xml.flat",
-        "source": "com.example.myapplication.app-main-44:/xml/backup_rules.xml"
+        "merged": "com.example.myapplication.app-debug-41:/mipmap-xxxhdpi_macewan_logo_round.png.flat",
+        "source": "com.example.myapplication.app-main-43:/mipmap-xxxhdpi/macewan_logo_round.png"
     },
     {
-        "merged": "com.example.myapplication.app-debug-42:/drawable_ic_launcher_background.xml.flat",
-        "source": "com.example.myapplication.app-main-44:/drawable/ic_launcher_background.xml"
+        "merged": "com.example.myapplication.app-debug-41:/mipmap-xxxhdpi_backarrow.png.flat",
+        "source": "com.example.myapplication.app-main-43:/mipmap-xxxhdpi/backarrow.png"
     }
 ]

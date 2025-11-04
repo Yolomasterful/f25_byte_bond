@@ -87,6 +87,7 @@ fun AppwhiteTextField(
 
 
 @Composable
+// The function that sets the theme for the entire app so it is consistent.
 fun MyApplicationTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
     // Dynamic color is available on Android 12+

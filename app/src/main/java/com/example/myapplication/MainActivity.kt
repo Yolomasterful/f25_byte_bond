@@ -1,4 +1,3 @@
-
 package com.example.myapplication
 import com.example.myapplication.ui.theme.SelectUserType
 import com.example.myapplication.ui.theme.MyApplicationTheme
@@ -35,7 +34,7 @@ import com.example.myapplication.ui.theme.ProctorDashb.ProctorLogin
 
 
 
-//Class structure of the app
+//Class structure of the app that helps point the user to the start of the app screen.
 enum class AppScreen {
     TypeUser,
 }
@@ -58,7 +57,8 @@ class MainActivity : ComponentActivity() {
     }
 }
 @OptIn(ExperimentalMaterial3Api::class)
-// The following function has the main top bar before the user logs in
+// The following function ensures the main app top bar is not visible until the
+// user went past the dashboard pages.
 @Composable
 fun ExamDeferAppBar(
     modifier: Modifier = Modifier
@@ -84,7 +84,7 @@ fun ExamDeferAppBar(
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-// Function for the skeleton of the app
+// Function for the skeleton of the entire app.
 fun ExamDeferApp(
     navController: NavHostController = rememberNavController()
 ) {
