@@ -20,6 +20,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
 import androidx.navigation.NavHostController
+import com.example.myapplication.AppScreen
 
 
 @Composable
@@ -71,7 +72,7 @@ fun SelectUserType(
         }
         Spacer(modifier = Modifier.height(50.dp))
         Button(
-            onClick = {navController.navigate("login_proctor")},
+            onClick = {navController.navigate("proctor_dashboard")},
             shape = RoundedCornerShape(6.dp),
             modifier = Modifier
                 .width(279.dp)

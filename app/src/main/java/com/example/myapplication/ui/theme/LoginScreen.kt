@@ -46,7 +46,7 @@ import androidx.compose.ui.graphics.Color
 fun LoginScreen(
     navController: NavHostController,
     modifier: Modifier = Modifier,
-    userType: String,
+    userType: String = "",
     onLoginSuccess: () -> Unit = {}
 ) {
     Column {
