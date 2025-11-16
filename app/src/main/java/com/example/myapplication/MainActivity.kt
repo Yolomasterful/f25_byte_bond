@@ -31,6 +31,7 @@ import com.example.myapplication.ui.theme.studentDashb.SDashboard
 import com.example.myapplication.ui.theme.professorDashb.PfDashboard
 import com.example.myapplication.ui.theme.professorDashb.ProfessorLogin
 import com.example.myapplication.ui.theme.ProctorDashb.ProctorLogin
+import com.example.myapplication.ui.theme.studentDashb.DeferralRequests.StatusViewerScreen
 
 
 
@@ -107,6 +108,8 @@ fun ExamDeferApp(
             composable(route = AppScreen.TypeUser.name) {
                 SelectUserType(navController)
             }
+
+            // Student Pages
             composable("login_student") {
                 StudentLogin(navController)
             }
@@ -114,6 +117,12 @@ fun ExamDeferApp(
                 SDashboard(navController)
             }
 
+            composable("StatusViewerScreen") {
+                StatusViewerScreen(navController)
+            }
+
+
+            // Professor Pages
             composable("login_professor") {
                 ProfessorLogin(navController)
             }

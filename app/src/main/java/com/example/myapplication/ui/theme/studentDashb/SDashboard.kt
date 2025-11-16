@@ -17,9 +17,12 @@ import com.example.myapplication.ui.theme.MainDashboard
 
 @Composable
 fun SDashboard(navController: NavHostController) {
-    MainDashboard(navController = navController) {
+    MainDashboard(
+        navController = navController,
+
+        ) {
         Button(
-            onClick = {},
+            onClick = {navController.navigate("statusViewerScreen")},
             shape = RoundedCornerShape(10.dp),
             colors = ButtonDefaults.buttonColors(
                 containerColor = MaterialTheme.colorScheme.surface
