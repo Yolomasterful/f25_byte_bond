@@ -1,0 +1,103 @@
+DeferralManagementSystem/
+│
+├── app/                           # Android application module
+│   ├── manifests/
+│   │   └── AndroidManifest.xml    # Permissions, activities, etc.
+│   │
+│   ├── java/com/example/deferralapp/
+│   │   ├── MainActivity.kt        # Entry point (login routing)
+│   │   │
+│   │   ├── ui/                    # ==== CLIENT TIER ====
+│   │   │   ├── common/            # Shared UI components
+│   │   │   │   ├── LoginScreen.kt
+│   │   │   │   ├── NotificationView.kt
+│   │   │   │
+│   │   │   ├── student/           # Student role UIs
+│   │   │   │   ├── DeferralFormScreen.kt
+│   │   │   │   ├── StatusViewerScreen.kt
+│   │   │   │
+│   │   │   ├── instructor/        # Instructor role UIs
+│   │   │   │   ├── DeferralListScreen.kt
+│   │   │   │   ├── RequestSortScreen.kt
+│   │   │   │   ├── ApproveDenyForm.kt
+│   │   │   │
+│   │   │   ├── admin/             # Admin role UIs
+│   │   │   │   ├── DashboardScreen.kt
+│   │   │   │   ├── CalendarScreen.kt
+│   │   │   │   ├── RoomBookingScreen.kt
+│   │   │   │   ├── SchedulingScreen.kt
+│   │   │   │
+│   │   │   ├── proctor/           # Proctor role UIs
+│   │   │       ├── AvailabilityScreen.kt
+│   │   │       ├── AssignedExamsScreen.kt
+│   │   │
+│   │   ├── data/                  # ==== DATA TIER ====
+│   │   │   ├── models/            # Data models (entities)
+│   │   │   │   ├── DeferralRequest.kt
+│   │   │   │   ├── User.kt
+│   │   │   │   ├── Message.kt
+│   │   │   │   ├── Notification.kt
+│   │   │   │   ├── Room.kt
+│   │   │   │
+│   │   │   ├── repository/        # Firestore / Storage interaction
+│   │   │       ├── DeferralRepository.kt
+│   │   │       ├── UserRepository.kt
+│   │   │       ├── MessagingRepository.kt
+│   │   │       ├── RoomBookingRepository.kt
+│   │   │
+│   │   ├── logic/                 # ==== APPLICATION TIER ====
+│   │   │   ├── auth/              # Firebase Authentication logic
+│   │   │   │   ├── AuthManager.kt
+│   │   │   │   ├── RoleRouter.kt
+│   │   │   │
+│   │   │   ├── functions/         # Cloud Functions interactions
+│   │   │   │   ├── DeferralHandler.kt
+│   │   │   │   ├── SchedulingHandler.kt
+│   │   │   │   ├── NotificationHandler.kt
+│   │   │   │
+│   │   │   ├── messaging/         # In-app chat logic
+│   │   │   │   ├── MessagingManager.kt
+│   │   │   │
+│   │   │   ├── notifications/     # Push / Email notification handling
+│   │   │       ├── NotificationManager.kt
+│   │   │
+│   │   ├── utils/                 # Helpers (formatting, constants, validation)
+│   │   │   ├── DateUtils.kt
+│   │   │   ├── Constants.kt
+│   │   │   ├── Validators.kt
+│   │   │
+│   │   ├── viewmodels/            # ViewModels for each screen (if using MVVM)
+│   │       ├── StudentViewModel.kt
+│   │       ├── InstructorViewModel.kt
+│   │       ├── AdminViewModel.kt
+│   │       ├── ProctorViewModel.kt
+│   │
+│   ├── res/                       # UI resources
+│   │   ├── layout/
+│   │   ├── values/
+│   │   ├── drawable/
+│   │
+│   └── build.gradle               # App-specific dependencies
+│
+├── firebase/
+│   ├── cloud_functions/           # Serverless backend (Cloud Functions)
+│   │   ├── index.js
+│   │   ├── notificationTriggers.js
+│   │   ├── schedulingLogic.js
+│   │   └── messagingLogic.js
+│   │
+│   ├── firestore.rules            # Security rules for Firestore
+│   ├── storage.rules              # Security rules for Storage
+│
+├── docs/
+│   ├── UML/
+│   │   ├── DeploymentDiagram_Student.puml
+│   │   ├── DeploymentDiagram_Instructor.puml
+│   │   ├── DeploymentDiagram_Admin.puml
+│   │   ├── DeploymentDiagram_Proctor.puml
+│   │   ├── SystemLevelDeployment.puml
+│   │
+│   └── README.md                  # Documentation summary
+│
+├── README.md                      # Project overview
+└── build.gradle                   # Root build config
