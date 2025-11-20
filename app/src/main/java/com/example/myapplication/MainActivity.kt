@@ -30,10 +30,13 @@ import com.example.myapplication.ui.theme.studentDashb.StudentLogin
 import com.example.myapplication.ui.theme.studentDashb.SDashboard
 import com.example.myapplication.ui.theme.professorDashb.PfDashboard
 import com.example.myapplication.ui.theme.professorDashb.ProfessorLogin
+import com.example.myapplication.ui.theme.professorDashb.Inbox.Messages
+import com.example.myapplication.ui.theme.professorDashb.BookExams.ExamReqForm
 import com.example.myapplication.ui.theme.ProctorDashb.ProctorLogin
 import com.example.myapplication.ui.theme.studentDashb.DeferralRequests.StatusViewerScreen
 import com.example.myapplication.ui.theme.studentDashb.DeferralRequests.ExamDetailScreen
-
+import com.example.myapplication.ui.theme.studentDashb.RequestDeferral.ExamDeferralForm
+import com.example.myapplication.ui.theme.studentDashb.RequestDeferral.RequestSent
 
 
 //Class structure of the app that helps point the user to the start of the app screen.
@@ -127,6 +130,18 @@ fun ExamDeferApp(
                 ExamDetailScreen(navController)
             }
 
+            composable("ExamDeferralForm") {
+                ExamDeferralForm(navController)
+            }
+
+            composable("RequestSent") {
+                RequestSent(navController)
+            }
+
+            composable("ExamReqForm") {
+                ExamReqForm(navController)
+            }
+
             //////////////////////////////////////////////////
 
             //////////////////////////////////////////////////
@@ -137,6 +152,10 @@ fun ExamDeferApp(
 
             composable("professor_dashboard") {
                 PfDashboard(navController)
+            }
+
+            composable("Messages") {
+                Messages(navController)
             }
 
             //////////////////////////////////////////////////

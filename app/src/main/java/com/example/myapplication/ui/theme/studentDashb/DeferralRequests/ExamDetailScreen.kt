@@ -34,7 +34,7 @@ import com.example.myapplication.ui.theme.MainLayout
 fun ExamDetailScreen(navController: NavHostController) {
     MainLayout(
         navController = navController,
-        pageName = "Request a Deferral"
+        pageName = "Detail goes here!"
 
     ){
     }

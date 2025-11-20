@@ -19,7 +19,7 @@ import com.example.myapplication.ui.theme.MainDashboard
 fun PfDashboard(navController: NavHostController) {
     MainDashboard(navController = navController) {
         Button(
-            onClick = {},
+            onClick = {navController.navigate("Messages")},
             shape = RoundedCornerShape(10.dp),
             colors = ButtonDefaults.buttonColors(
                 containerColor = MaterialTheme.colorScheme.surface
@@ -35,7 +35,7 @@ fun PfDashboard(navController: NavHostController) {
         }
         Spacer(modifier = Modifier.height(60.dp))
         Button(
-            onClick = {},
+            onClick = {navController.navigate("ExamReqForm")},
             shape = RoundedCornerShape(10.dp),
             colors = ButtonDefaults.buttonColors(
                 containerColor = MaterialTheme.colorScheme.surface

@@ -23,3 +23,16 @@
 
 package com.example.myapplication.ui.theme.studentDashb.RequestDeferral
 
+import androidx.compose.runtime.Composable
+import androidx.navigation.NavHostController
+import com.example.myapplication.ui.theme.MainLayout
+
+@Composable
+fun RequestSent(navController: NavHostController) {
+    MainLayout(
+        navController = navController,
+        pageName = "RequestSent"
+
+    ){
+    }
+}
