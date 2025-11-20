@@ -38,7 +38,7 @@ fun SDashboard(navController: NavHostController) {
         }
         Spacer(modifier = Modifier.height(60.dp))
         Button(
-            onClick = {},
+            onClick = {navController.navigate("ExamDetailScreen")},
             shape = RoundedCornerShape(10.dp),
             colors = ButtonDefaults.buttonColors(
                 containerColor = MaterialTheme.colorScheme.surface
