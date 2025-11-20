@@ -32,6 +32,7 @@ import com.example.myapplication.ui.theme.professorDashb.PfDashboard
 import com.example.myapplication.ui.theme.professorDashb.ProfessorLogin
 import com.example.myapplication.ui.theme.ProctorDashb.ProctorLogin
 import com.example.myapplication.ui.theme.studentDashb.DeferralRequests.StatusViewerScreen
+import com.example.myapplication.ui.theme.studentDashb.DeferralRequests.ExamDetailScreen
 
 
 
@@ -109,6 +110,7 @@ fun ExamDeferApp(
                 SelectUserType(navController)
             }
 
+            //////////////////////////////////////////////////
             // Student Pages
             composable("login_student") {
                 StudentLogin(navController)
@@ -121,7 +123,13 @@ fun ExamDeferApp(
                 StatusViewerScreen(navController)
             }
 
+            composable("ExamDetailScreen") {
+                ExamDetailScreen(navController)
+            }
 
+            //////////////////////////////////////////////////
+
+            //////////////////////////////////////////////////
             // Professor Pages
             composable("login_professor") {
                 ProfessorLogin(navController)
@@ -131,6 +139,10 @@ fun ExamDeferApp(
                 PfDashboard(navController)
             }
 
+            //////////////////////////////////////////////////
+
+            //////////////////////////////////////////////////
+            // Proctor Pages
             composable("login_proctor") {
                 ProctorLogin(navController)
             }
@@ -139,6 +151,10 @@ fun ExamDeferApp(
                 PDashboard(navController)
             }
 
+            //////////////////////////////////////////////////
+
+            //////////////////////////////////////////////////
+            // Admin Pages
             composable("login_admin") {
                 AdminLogin(navController)
             }
@@ -146,6 +162,8 @@ fun ExamDeferApp(
             composable("admin_dashboard") {
                 ADashboard(navController)
             }
+
+            //////////////////////////////////////////////////
 
 
         }

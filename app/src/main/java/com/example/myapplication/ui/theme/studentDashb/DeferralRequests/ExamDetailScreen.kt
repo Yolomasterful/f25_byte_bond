@@ -26,3 +26,16 @@
 
 package com.example.myapplication.ui.theme.studentDashb.DeferralRequests
 
+import androidx.compose.runtime.Composable
+import androidx.navigation.NavHostController
+import com.example.myapplication.ui.theme.MainLayout
+
+@Composable
+fun ExamDetailScreen(navController: NavHostController) {
+    MainLayout(
+        navController = navController,
+        pageName = "Request a Deferral"
+
+    ){
+    }
+}
