@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "305560954051",
+    "project_id": "bytebond2",
+    "storage_bucket": "bytebond2.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:305560954051:android:d700ba4fd34bc903346e76",
+        "android_client_info": {
+          "package_name": "com.example.myapplication"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBhn-FYSKie83dAmD3utlbF1EdISzr9Lrg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
