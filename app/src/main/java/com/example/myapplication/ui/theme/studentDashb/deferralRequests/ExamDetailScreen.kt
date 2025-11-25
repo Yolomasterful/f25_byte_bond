@@ -24,18 +24,41 @@
 ------------------------------------------------------------
 */
 
-package com.example.myapplication.ui.theme.studentDashb.DeferralRequests
+package com.example.myapplication.ui.theme.studentDashb.deferralRequests
 
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.size
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
+import com.example.myapplication.R
 import com.example.myapplication.ui.theme.MainLayout
+import com.example.myapplication.ui.theme.basicButton
+import com.example.myapplication.ui.theme.whiteBox
 
 @Composable
 fun ExamDetailScreen(navController: NavHostController) {
     MainLayout(
         navController = navController,
-        pageName = "Detail goes here!"
+        pageName = "CHANGE TO CLASS NAME"
 
     ){
+        whiteBox{
+            //Insert info from data here!
+        }
+
+        basicButton(
+            onClick = { navController.navigate("student_dashboard") },
+            imageContent = {
+                Image(
+                    painter = painterResource(id = R.drawable.home_fill),
+                    contentDescription = "Home Button",
+                    modifier = Modifier
+                        .size(40.dp)
+                )
+            }
+            )
     }
 }

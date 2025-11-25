@@ -23,20 +23,20 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.compose.runtime.getValue
-import com.example.myapplication.ui.theme.AdminDashb.ADashboard
-import com.example.myapplication.ui.theme.AdminDashb.AdminLogin
-import com.example.myapplication.ui.theme.ProctorDashb.PDashboard
+import com.example.myapplication.ui.theme.adminDashb.ADashboard
+import com.example.myapplication.ui.theme.adminDashb.AdminLogin
+import com.example.myapplication.ui.theme.proctorDashb.PDashboard
 import com.example.myapplication.ui.theme.studentDashb.StudentLogin
 import com.example.myapplication.ui.theme.studentDashb.SDashboard
 import com.example.myapplication.ui.theme.professorDashb.PfDashboard
 import com.example.myapplication.ui.theme.professorDashb.ProfessorLogin
 import com.example.myapplication.ui.theme.professorDashb.Inbox.Messages
-import com.example.myapplication.ui.theme.professorDashb.BookExams.ExamReqForm
-import com.example.myapplication.ui.theme.ProctorDashb.ProctorLogin
-import com.example.myapplication.ui.theme.studentDashb.DeferralRequests.StatusViewerScreen
-import com.example.myapplication.ui.theme.studentDashb.DeferralRequests.ExamDetailScreen
-import com.example.myapplication.ui.theme.studentDashb.RequestDeferral.ExamDeferralForm
-import com.example.myapplication.ui.theme.studentDashb.RequestDeferral.RequestSent
+import com.example.myapplication.ui.theme.proctorDashb.ProctorLogin
+import com.example.myapplication.ui.theme.studentDashb.deferralRequests.StatusViewerScreen
+import com.example.myapplication.ui.theme.studentDashb.deferralRequests.ExamDetailScreen
+import com.example.myapplication.ui.theme.studentDashb.requestDeferral.ExamDeferralForm
+import com.example.myapplication.ui.theme.studentDashb.requestDeferral.RequestSent
+import com.example.myapplication.ui.theme.studentDashb.requestDeferral.ExamDeferralForm2
 
 
 //Class structure of the app that helps point the user to the start of the app screen.
@@ -138,8 +138,8 @@ fun ExamDeferApp(
                 RequestSent(navController)
             }
 
-            composable("ExamReqForm") {
-                ExamReqForm(navController)
+            composable("ExamDeferralForm2") {
+                ExamDeferralForm2(navController)
             }
 
             //////////////////////////////////////////////////

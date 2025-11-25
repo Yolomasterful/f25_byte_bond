@@ -77,12 +77,14 @@ fun AppwhiteTextField(
                 focusedContainerColor = MaterialTheme.colorScheme.surface,
                 unfocusedContainerColor = MaterialTheme.colorScheme.surface,
                 focusedTextColor = MaterialTheme.colorScheme.onBackground,
-                cursorColor = MaterialTheme.colorScheme.primary,
+                cursorColor = MaterialTheme.colorScheme.onPrimary,
                 focusedIndicatorColor = MaterialTheme.colorScheme.onPrimary,
                 unfocusedIndicatorColor = MaterialTheme.colorScheme.onPrimary
         )
     )
 }
+
+
 
 
 

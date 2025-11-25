@@ -93,31 +93,7 @@ fun LoginScreen(
                 navController = navController,
                 modifier = Modifier
             )
-//            Box(
-//                modifier = Modifier
-//                    .fillMaxWidth()
-//                    .height(28.dp)
-//            ) {
-//            Button(onClick = { navController.popBackStack() },
-//                modifier = Modifier
-//                    .width(93.dp)
-//                    .height(28.dp)
-//                    .align(Alignment.TopStart),
-//                shape = RoundedCornerShape(size = 31.dp),
-//                colors = ButtonDefaults.buttonColors(
-//                    containerColor = MaterialTheme.colorScheme.surface
-//                ),
-//                border = BorderStroke(1.dp, Color.Black)
-//
-//
-//            ) {
-//                Image(
-//                    painter = painterResource(id = R.mipmap.backarrow),
-//                    contentDescription = "ArrowBar",
-//                    modifier = Modifier
-//                        .size(24.dp)
-//                )
-//            }}
+
             Spacer(modifier = Modifier.height(40.dp))
             Text("Email:",
             modifier = Modifier
