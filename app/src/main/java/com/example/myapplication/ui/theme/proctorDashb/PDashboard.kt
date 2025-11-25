@@ -1,4 +1,4 @@
-package com.example.myapplication.ui.theme.ProctorDashb
+package com.example.myapplication.ui.theme.proctorDashb
 
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text

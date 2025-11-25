@@ -1,4 +1,4 @@
-package com.example.myapplication.ui.theme.AdminDashb
+package com.example.myapplication.ui.theme.adminDashb
 
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController

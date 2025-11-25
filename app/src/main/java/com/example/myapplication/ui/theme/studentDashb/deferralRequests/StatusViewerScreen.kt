@@ -28,11 +28,18 @@
 ------------------------------------------------------------
 */
 
-package com.example.myapplication.ui.theme.studentDashb.DeferralRequests
+package com.example.myapplication.ui.theme.studentDashb.deferralRequests
 
+import androidx.compose.foundation.layout.Column
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import com.example.myapplication.ui.theme.MainLayout
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.ui.Modifier
+import com.example.myapplication.ui.theme.inboxBox
+import androidx.compose.foundation.layout.fillMaxWidth
 
 @Composable
 fun StatusViewerScreen(navController: NavHostController) {
@@ -41,5 +48,27 @@ fun StatusViewerScreen(navController: NavHostController) {
         pageName = "Deferral Requests"
 
     ){
+        Column(
+            verticalArrangement = Arrangement.Center,
+            modifier = Modifier.fillMaxSize()
+        ) {
+
+            // This is the layout code for the exam information
+            inboxBox(onClick = { navController.navigate("ExamDetailScreen") }) {
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.SpaceBetween
+                ) {
+                    Column {
+                        //Add data for Class name here
+                        //Add Data for Date here
+                    }
+                    Column {
+                        //Add data for status
+                        //Add Data for classroom name
+                    }
+                }
+            }
+        }
     }
 }

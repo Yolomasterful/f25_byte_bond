@@ -1,4 +1,4 @@
-package com.example.myapplication.ui.theme.AdminDashb
+package com.example.myapplication.ui.theme.adminDashb
 
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text

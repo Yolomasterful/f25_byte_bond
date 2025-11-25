@@ -16,6 +16,11 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.navigation.NavHostController
 import androidx.compose.material3.Scaffold
 import androidx.compose.foundation.layout.fillMaxSize
+import android.R.attr.content
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.wrapContentHeight
+import androidx.compose.foundation.shape.RoundedCornerShape
 
 @Composable
 fun MainLayout(
@@ -32,10 +37,10 @@ fun MainLayout(
                     .padding(horizontal = 16.dp)
                     .padding(innerPadding)
                     .fillMaxSize(),
-                verticalArrangement = Arrangement.Center,
+                verticalArrangement = Arrangement.Top,
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                Spacer(modifier = Modifier.height(100.dp))
+                Spacer(modifier = Modifier.height(50.dp))
                 Text(
                     "$pageName",
                     modifier = Modifier
@@ -43,7 +48,7 @@ fun MainLayout(
                     style = MaterialTheme.typography.uTitletext,
                     textAlign = TextAlign.Center
                 )
-                Spacer(modifier = Modifier.height(60.dp))
+                Spacer(modifier = Modifier.height(30.dp))
                 backArrow(
                     navController = navController,
                     modifier = Modifier
@@ -54,4 +59,23 @@ fun MainLayout(
 
         }
     )
+}
+
+
+@Composable
+fun whiteBox(
+    modifier: Modifier = Modifier,
+    content: @Composable () -> Unit
+) {
+    Box(
+        modifier = Modifier
+            .fillMaxWidth()
+            .wrapContentHeight()
+            .background(
+                MaterialTheme.colorScheme.surface,
+                shape = RoundedCornerShape(8.dp)),
+        contentAlignment = Alignment.Center
+    ) {
+        content()
+    }
 }

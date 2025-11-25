@@ -1,7 +1,6 @@
-package com.example.myapplication.ui.theme.ProctorDashb
+package com.example.myapplication.ui.theme.proctorDashb
 
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import com.example.myapplication.ui.theme.LoginScreen
 
