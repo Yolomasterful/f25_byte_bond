@@ -19,7 +19,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.navigation.NavHostController
 import androidx.compose.material3.Scaffold
 import androidx.compose.foundation.layout.fillMaxSize
-import com.example.myapplication.AppScreen
+
 
 @Composable
 fun MainDashboard(
@@ -47,7 +47,7 @@ fun MainDashboard(
                 Spacer(modifier = Modifier.height(60.dp))
                 content()
                 Button(
-                    onClick = {navController.navigate(AppScreen.TypeUser.name)},
+                    onClick = {navController.navigate("select_user")},
                     shape = RoundedCornerShape(10.dp),
                     modifier = Modifier
                         .width(182.dp)

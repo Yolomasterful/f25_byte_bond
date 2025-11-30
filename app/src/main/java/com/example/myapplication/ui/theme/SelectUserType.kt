@@ -1,43 +1,34 @@
 package com.example.myapplication.ui.theme
 
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.dp
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.ui.res.painterResource
-import com.example.myapplication.R
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.MaterialTheme
+import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
-import com.example.myapplication.AppScreen
-
+import com.example.myapplication.R
 
 @Composable
-
 fun SelectUserType(
     navController: NavHostController,
-    //onNextButtonClicked: (Int) -> Unit,
     modifier: Modifier = Modifier
 ) {
     Column(
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally,
-        modifier = Modifier
+        modifier = modifier
             .fillMaxWidth()
             .fillMaxHeight()
-            .background(MaterialTheme.colorScheme.surface),
+            .background(MaterialTheme.colorScheme.surface)
     ) {
+
         Image(
             painter = painterResource(id = R.mipmap.mainpage),
             contentDescription = "Logo App",
@@ -45,58 +36,49 @@ fun SelectUserType(
                 .width(109.dp)
                 .height(109.dp)
         )
+
         Spacer(modifier = Modifier.height(60.dp))
+
+        // STUDENT
         Button(
-            onClick = {navController.navigate("login_student")},
+            onClick = { navController.navigate("login/student") },
             shape = RoundedCornerShape(6.dp),
-            modifier = Modifier
-                .width(279.dp)
-                .height(92.dp)
+            modifier = Modifier.width(279.dp).height(92.dp)
         ) {
-            Text(
-                text = "Student",
-                style = MaterialTheme.typography.uTypetext
-            )
+            Text(text = "Student", style = MaterialTheme.typography.uTypetext)
         }
+
         Spacer(modifier = Modifier.height(50.dp))
+
+        // PROFESSOR
         Button(
-            onClick = {navController.navigate("login_professor")},
+            onClick = { navController.navigate("login/professor") },
             shape = RoundedCornerShape(6.dp),
-            modifier = Modifier
-                .width(279.dp)
-                .height(92.dp)
+            modifier = Modifier.width(279.dp).height(92.dp)
         ) {
-            Text(
-                text = "Professor",
-                style = MaterialTheme.typography.uTypetext)
+            Text(text = "Professor", style = MaterialTheme.typography.uTypetext)
         }
+
         Spacer(modifier = Modifier.height(50.dp))
+
+        // PROCTOR
         Button(
-            onClick = {navController.navigate("proctor_dashboard")},
+            onClick = { navController.navigate("login/proctor") },
             shape = RoundedCornerShape(6.dp),
-            modifier = Modifier
-                .width(279.dp)
-                .height(92.dp)
+            modifier = Modifier.width(279.dp).height(92.dp)
         ) {
-            Text(
-                text = "Proctor",
-                style = MaterialTheme.typography.uTypetext
-            )
+            Text(text = "Proctor", style = MaterialTheme.typography.uTypetext)
         }
+
         Spacer(modifier = Modifier.height(50.dp))
+
+        // ADMIN
         Button(
-            onClick = {navController.navigate("login_admin")},
+            onClick = { navController.navigate("login/admin") },
             shape = RoundedCornerShape(6.dp),
-            modifier = Modifier
-                .width(279.dp)
-                .height(92.dp)
+            modifier = Modifier.width(279.dp).height(92.dp)
         ) {
-            Text(
-                text = "Admin",
-                style = MaterialTheme.typography.uTypetext
-            )
+            Text(text = "Admin", style = MaterialTheme.typography.uTypetext)
         }
     }
 }
-
-
