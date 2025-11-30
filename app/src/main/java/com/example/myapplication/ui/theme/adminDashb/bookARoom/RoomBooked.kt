@@ -1,2 +1,2 @@
-package com.example.myapplication.ui.theme.adminDashb.BookARoom
+package com.example.myapplication.ui.theme.adminDashb.bookARoom
 

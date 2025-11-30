@@ -1,2 +1,2 @@
-package com.example.myapplication.ui.theme.proctorDashb.Inbox
+package com.example.myapplication.ui.theme.proctorDashb.inbox
 

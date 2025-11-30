@@ -1,2 +1,2 @@
-package com.example.myapplication.ui.theme.proctorDashb.Availability
+package com.example.myapplication.ui.theme.proctorDashb.availability
 

@@ -1,2 +1,2 @@
-package com.example.myapplication.ui.theme.adminDashb.Inbox
+package com.example.myapplication.ui.theme.adminDashb.inbox
 

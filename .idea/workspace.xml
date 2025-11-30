@@ -18,6 +18,12 @@
   <component name="ChangeListManager">
     <list default="true" id="193d9b95-0f51-44ef-beb1-de87a45071f7" name="Changes" comment="Add a pointer to the logout button">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/myapplication/ui/theme/adminDashb/bookARoom/BookRoom.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/myapplication/ui/theme/adminDashb/bookARoom/BookRoom.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/myapplication/ui/theme/adminDashb/bookARoom/RoomBooked.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/myapplication/ui/theme/adminDashb/bookARoom/RoomBooked.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/myapplication/ui/theme/adminDashb/inbox/AdminInbox.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/myapplication/ui/theme/adminDashb/inbox/AdminInbox.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/myapplication/ui/theme/proctorDashb/availability/SetAvailability.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/myapplication/ui/theme/proctorDashb/availability/SetAvailability.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/myapplication/ui/theme/proctorDashb/availability/ViewSchedule.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/myapplication/ui/theme/proctorDashb/availability/ViewSchedule.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/myapplication/ui/theme/proctorDashb/inbox/InboxPage.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/myapplication/ui/theme/proctorDashb/inbox/InboxPage.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,7 +33,7 @@
   <component name="ClangdSettings">
     <option name="formatViaClangd" value="false" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[DeviceId(pluginId=LocalEmulator, isTemplate=false, identifier=path=C:\Users\ORIENTAL VENDOR LTD\.android\avd\Medium_Phone.avd)]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[DeviceId(pluginId=LocalEmulator, isTemplate=false, identifier=path=/home/heshna/.android/avd/Medium_Phone.avd)]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -59,6 +65,11 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="recovered-heshna2" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
@@ -67,22 +78,22 @@
     &quot;assignee&quot;: &quot;heshnaB&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/Yolomasterful/f25_byte_bond.git&quot;,
-    &quot;accountId&quot;: &quot;0e2d4d9a-517c-4ec1-b3e4-3babc36c4cf2&quot;
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/heshnaB/f25_byte_bond.git",
+    "accountId": "7e8b673a-fe5d-4432-9af0-c3b55fcf60b8"
   },
-  &quot;recentNewPullRequestHead&quot;: {
-    &quot;server&quot;: {
-      &quot;useHttp&quot;: false,
-      &quot;host&quot;: &quot;github.com&quot;,
-      &quot;port&quot;: null,
-      &quot;suffix&quot;: null
+  "recentNewPullRequestHead": {
+    "server": {
+      "useHttp": false,
+      "host": "github.com",
+      "port": null,
+      "suffix": null
     },
-    &quot;owner&quot;: &quot;Yolomasterful&quot;,
-    &quot;repository&quot;: &quot;f25_byte_bond&quot;
+    "owner": "Yolomasterful",
+    "repository": "f25_byte_bond"
   }
-}</component>
+}]]></component>
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="CurrentFile" />
   </component>
@@ -105,9 +116,10 @@
     "RunOnceActivity.cidr.known.project.marker": "true",
     "RunOnceActivity.git.unshallow": "true",
     "RunOnceActivity.readMode.enableVisualFormatting": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "cf.first.check.clang-format": "false",
     "cidr.known.project.marker": "true",
-    "git-widget-placeholder": "Semhe",
+    "git-widget-placeholder": "heshna2",
     "last_opened_file_path": "/home/heshna/AndroidStudioProjects/f25_byte_bond/app/src/main/res/drawable",
     "settings.editor.selected.configurable": "reference.settingsdialog.project.gradle",
     "vcs.patch.path": "/home/heshna/Documents/Fall 2025/software engineering"
@@ -280,6 +292,10 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Android App.MainActivity" />
+        <item itemvalue="Android App.MainActivity" />
+        <item itemvalue="Android App.MainActivity" />
+        <item itemvalue="Android App.MainActivity" />
         <item itemvalue="Android App.MainActivity" />
       </list>
     </recent_temporary>
