@@ -21,8 +21,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 
 
 
-
-
 private val DarkColorScheme = darkColorScheme(
     primary = MacewanRed,
     secondary = DefaultWhite,
@@ -85,9 +83,6 @@ fun AppwhiteTextField(
 }
 
 
-
-
-
 @Composable
 // The function that sets the theme for the entire app so it is consistent.
 fun MyApplicationTheme(
@@ -112,3 +107,4 @@ fun MyApplicationTheme(
         content = content
     )
 }
+
