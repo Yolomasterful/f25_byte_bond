@@ -17,10 +17,12 @@ import com.example.myapplication.ui.theme.proctorDashb.PDashboard
 import com.example.myapplication.ui.theme.adminDashb.ADashboard
 
 // Additional screens
-import com.example.myapplication.ui.theme.professorDashb.Inbox.Messages
+import com.example.myapplication.ui.theme.professorDashb.inbox.Messages
+import com.example.myapplication.ui.theme.professorDashb.bookExams.ExamReqForm
 import com.example.myapplication.ui.theme.studentDashb.deferralRequests.StatusViewerScreen
 import com.example.myapplication.ui.theme.studentDashb.deferralRequests.ExamDetailScreen
 import com.example.myapplication.ui.theme.studentDashb.requestDeferral.ExamDeferralForm
+import com.example.myapplication.ui.theme.studentDashb.requestDeferral.ExamDeferralForm2
 import com.example.myapplication.ui.theme.studentDashb.requestDeferral.RequestSent
 
 @Composable
@@ -72,6 +74,10 @@ fun AppNavHost(
             ExamDeferralForm(navController)
         }
 
+        composable("ExamDeferralForm2") {
+            ExamDeferralForm2(navController)
+        }
+
         composable("RequestSent") {
             RequestSent(navController)
         }
@@ -86,6 +92,19 @@ fun AppNavHost(
         composable("Messages") {
             Messages(navController)
         }
+
+        composable("ExamReqForm") {
+            ExamReqForm(navController)
+        }
+
+        composable("ExamReqSent") {
+            ExamReqSent(navController)
+        }
+
+        composable("UploadExam") {
+            UploadExam(navController)
+        }
+
 
         /** ───────────────────────────────
          *  5. Proctor Screen

@@ -23,8 +23,8 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import com.example.myapplication.ui.theme.professorDashb.inbox.data.Message
-import com.example.myapplication.ui.theme.professorDashb.inbox.data.MessagingRepository
+//import com.example.myapplication.ui.theme.professorDashb.inbox.data.Message
+//import com.example.myapplication.ui.theme.professorDashb.inbox.data.MessagingRepository
 import com.example.myapplication.ui.theme.whiteBox
 
 @Composable
