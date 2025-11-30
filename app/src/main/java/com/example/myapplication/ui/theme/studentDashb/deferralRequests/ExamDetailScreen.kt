@@ -27,6 +27,8 @@
 package com.example.myapplication.ui.theme.studentDashb.deferralRequests
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.size
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -48,6 +50,8 @@ fun ExamDetailScreen(navController: NavHostController) {
         whiteBox{
             //Insert info from data here!
         }
+
+        Spacer(modifier = Modifier.height(40.dp))
 
         basicButton(
             onClick = { navController.navigate("student_dashboard") },
