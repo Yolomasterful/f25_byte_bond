@@ -19,6 +19,8 @@ import com.example.myapplication.ui.theme.adminDashb.ADashboard
 // Additional screens
 import com.example.myapplication.ui.theme.professorDashb.inbox.Messages
 import com.example.myapplication.ui.theme.professorDashb.bookExams.ExamReqForm
+import com.example.myapplication.ui.theme.professorDashb.bookExams.ExamReqSent
+import com.example.myapplication.ui.theme.professorDashb.bookExams.UploadExam
 import com.example.myapplication.ui.theme.studentDashb.deferralRequests.StatusViewerScreen
 import com.example.myapplication.ui.theme.studentDashb.deferralRequests.ExamDetailScreen
 import com.example.myapplication.ui.theme.studentDashb.requestDeferral.ExamDeferralForm

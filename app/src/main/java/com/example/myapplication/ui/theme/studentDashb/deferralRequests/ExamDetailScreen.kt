@@ -54,7 +54,7 @@ fun ExamDetailScreen(navController: NavHostController) {
         Spacer(modifier = Modifier.height(40.dp))
 
         basicButton(
-            onClick = { navController.navigate("student_dashboard") },
+            onClick = { navController.navigate("dashboard_student") },
             imageContent = {
                 Image(
                     painter = painterResource(id = R.drawable.home_fill),

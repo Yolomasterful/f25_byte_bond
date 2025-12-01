@@ -30,7 +30,7 @@ fun ExamReqSent(navController: NavHostController) {
 
         Spacer(modifier = Modifier.height(40.dp))
         basicButton(
-            onClick = { navController.navigate("professor_dashboard") },
+            onClick = { navController.navigate("dashboard_professor") },
             imageContent = {
                 Image(
                     painter = painterResource(id = R.drawable.home_fill),
