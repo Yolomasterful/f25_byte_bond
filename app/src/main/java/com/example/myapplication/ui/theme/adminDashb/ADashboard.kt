@@ -20,7 +20,7 @@ fun ADashboard(navController: NavHostController) {
     MainDashboard(navController = navController) {
 
         Button(
-                onClick = {},
+                onClick = {navController.navigate("AdminInbox")},
                 shape = RoundedCornerShape(10.dp),
                 colors = ButtonDefaults.buttonColors(
                     containerColor = MaterialTheme.colorScheme.surface

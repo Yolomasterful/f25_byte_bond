@@ -16,13 +16,11 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.navigation.NavHostController
 import androidx.compose.material3.Scaffold
 import androidx.compose.foundation.layout.fillMaxSize
-import android.R.attr.content
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.wrapContentHeight
-import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.verticalScroll
+
 
 @Composable
 fun MainLayout(
@@ -33,13 +31,12 @@ fun MainLayout(
 ) {
     Scaffold(
         content = { innerPadding ->
-            val scrollState = rememberScrollState()
+
             Column(
                 modifier = Modifier
                     .padding(horizontal = 16.dp)
                     .padding(innerPadding)
-                    .fillMaxSize()
-                    .verticalScroll(scrollState),
+                    .fillMaxSize(),
                 verticalArrangement = Arrangement.Top,
                 horizontalAlignment = Alignment.CenterHorizontally,
 
