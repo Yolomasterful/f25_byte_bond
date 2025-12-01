@@ -15,6 +15,7 @@ import com.example.myapplication.ui.theme.studentDashb.SDashboard
 import com.example.myapplication.ui.theme.professorDashb.PfDashboard
 import com.example.myapplication.ui.theme.proctorDashb.PDashboard
 import com.example.myapplication.ui.theme.adminDashb.ADashboard
+import com.example.myapplication.ui.theme.adminDashb.inbox.AdminInbox
 
 // Additional screens
 import com.example.myapplication.ui.theme.professorDashb.inbox.Messages
@@ -113,6 +114,10 @@ fun AppNavHost(
          *  ─────────────────────────────── */
         composable("dashboard_proctor") {
             PDashboard(navController)
+        }
+
+        composable("AdminInbox") {
+            AdminInbox(navController)
         }
 
         /** ───────────────────────────────
