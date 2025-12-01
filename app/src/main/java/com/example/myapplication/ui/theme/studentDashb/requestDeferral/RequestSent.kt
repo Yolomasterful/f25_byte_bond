@@ -65,7 +65,7 @@ fun RequestSent(navController: NavHostController) {
         Spacer(modifier = Modifier.height(50.dp))
 
         basicButton(
-            onClick = { navController.navigate("student_dashboard") },
+            onClick = { navController.navigate("dashboard_student") },
             imageContent = {
                 Image(
                     painter = painterResource(id = R.drawable.home_fill),
