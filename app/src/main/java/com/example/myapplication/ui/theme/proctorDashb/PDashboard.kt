@@ -22,15 +22,11 @@ import com.example.myapplication.ui.theme.MainDashboard
 @Composable
 fun PDashboard(navController: NavHostController) {
     MainDashboard(navController = navController) {
-        val scrollState = rememberScrollState()
 
-        Column(
-            modifier = Modifier
-                .fillMaxWidth()
-                .verticalScroll(scrollState)
-        ) {
+
+
             Button(
-                onClick = {},
+                onClick = {navController.navigate("InboxPage")},
                 shape = RoundedCornerShape(10.dp),
                 colors = ButtonDefaults.buttonColors(
                     containerColor = MaterialTheme.colorScheme.surface
@@ -46,7 +42,7 @@ fun PDashboard(navController: NavHostController) {
             }
             Spacer(modifier = Modifier.height(60.dp))
             Button(
-                onClick = {},
+                onClick = {navController.navigate("SetAvailability")},
                 shape = RoundedCornerShape(10.dp),
                 colors = ButtonDefaults.buttonColors(
                     containerColor = MaterialTheme.colorScheme.surface
@@ -78,6 +74,6 @@ fun PDashboard(navController: NavHostController) {
                 )
             }
             Spacer(modifier = Modifier.height(60.dp))
-        }
+
     }
 }
