@@ -1,17 +1,24 @@
 package com.example.myapplication.ui.theme.professorDashb.bookExams
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
@@ -30,92 +37,110 @@ fun ExamReqForm(navController: NavHostController) {
         navController = navController,
         pageName = "Exam requirements"
 
-    ){
+    ) {
 
-
-        val context = LocalContext.current
-        var roomNum by remember { mutableStateOf("") }
-        var timeAllowed by remember { mutableStateOf("") }
-        var MaterialsNeeded by remember { mutableStateOf("") }
-        var notes by remember { mutableStateOf("") }
-
-        Spacer(modifier = Modifier.height(40.dp))
-        Text("Room preference:",
+        Column(
             modifier = Modifier
-                .fillMaxWidth(),
-            textAlign = TextAlign.Start)
-        Spacer(modifier = Modifier.height(6.dp))
-        AppwhiteTextField(
-            // The email box details
-            value = roomNum,
-            onValueChange = { roomNum = it },
-            placeholderText = "",
-            modifier = Modifier.fillMaxWidth(),
-            keyboardOptions = KeyboardOptions.Default.copy(imeAction = ImeAction.Next)
-        )
+//                .fillMaxSize()
+                .verticalScroll(rememberScrollState())
+//                .padding(bottom = 40.dp)
+//                .align(Alignment.CenterHorizontally),
+        ) {
+            val context = LocalContext.current
+            var roomNum by remember { mutableStateOf("") }
+            var timeAllowed by remember { mutableStateOf("") }
+            var MaterialsNeeded by remember { mutableStateOf("") }
+            var notes by remember { mutableStateOf("") }
 
-        Spacer(modifier = Modifier.height(20.dp))
-        Text("Time allowed:",
-            modifier = Modifier
-                .fillMaxWidth(),
-            textAlign = TextAlign.Start)
-        Spacer(modifier = Modifier.height(6.dp))
-        AppwhiteTextField(
-            // The email box details
-            value = timeAllowed,
-            onValueChange = { timeAllowed = it },
-            placeholderText = "",
-            modifier = Modifier.fillMaxWidth(),
-            keyboardOptions = KeyboardOptions.Default.copy(imeAction = ImeAction.Next)
-        )
 
-        Spacer(modifier = Modifier.height(20.dp))
-        Text("Materials needed:",
-            modifier = Modifier
-                .fillMaxWidth(),
-            textAlign = TextAlign.Start)
-        Spacer(modifier = Modifier.height(6.dp))
-        AppwhiteTextField(
-            // The email box details
-            value = MaterialsNeeded,
-            onValueChange = { MaterialsNeeded = it },
-            placeholderText = "",
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(150.dp),
-            keyboardOptions = KeyboardOptions.Default.copy(imeAction = ImeAction.Next)
-        )
 
-        Spacer(modifier = Modifier.height(20.dp))
-        Text("Notes:",
-            modifier = Modifier
-                .fillMaxWidth(),
-            textAlign = TextAlign.Start)
-        Spacer(modifier = Modifier.height(6.dp))
-        AppwhiteTextField(
-            // The email box details
-            value = notes,
-            onValueChange = { notes = it },
-            placeholderText = "",
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(150.dp),
-            keyboardOptions = KeyboardOptions.Default.copy(imeAction = ImeAction.Next)
-        )
+            Spacer(modifier = Modifier.height(40.dp))
+            Text(
+                "Room preference:",
+                modifier = Modifier
+                    .fillMaxWidth(),
+                textAlign = TextAlign.Start
+            )
+            Spacer(modifier = Modifier.height(6.dp))
+            AppwhiteTextField(
+                // The email box details
+                value = roomNum,
+                onValueChange = { roomNum = it },
+                placeholderText = "",
+                modifier = Modifier.fillMaxWidth(),
+                keyboardOptions = KeyboardOptions.Default.copy(imeAction = ImeAction.Next)
+            )
 
-        Spacer(modifier = Modifier.height(20.dp))
+            Spacer(modifier = Modifier.height(20.dp))
+            Text(
+                "Time allowed:",
+                modifier = Modifier
+                    .fillMaxWidth(),
+                textAlign = TextAlign.Start
+            )
+            Spacer(modifier = Modifier.height(6.dp))
+            AppwhiteTextField(
+                // The email box details
+                value = timeAllowed,
+                onValueChange = { timeAllowed = it },
+                placeholderText = "",
+                modifier = Modifier.fillMaxWidth(),
+                keyboardOptions = KeyboardOptions.Default.copy(imeAction = ImeAction.Next)
+            )
 
-        basicButton(
-            onClick = { navController.navigate("UploadExam") },
-            imageContent = {
-                Image(
-                    painter = painterResource(id = R.drawable.send_button),
-                    contentDescription = "Send Button",
-                    modifier = Modifier
-                        .size(40.dp)
-                )
-            }
-        )
+            Spacer(modifier = Modifier.height(20.dp))
+            Text(
+                "Materials needed:",
+                modifier = Modifier
+                    .fillMaxWidth(),
+                textAlign = TextAlign.Start
+            )
+            Spacer(modifier = Modifier.height(6.dp))
+            AppwhiteTextField(
+                // The email box details
+                value = MaterialsNeeded,
+                onValueChange = { MaterialsNeeded = it },
+                placeholderText = "",
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(150.dp),
+                keyboardOptions = KeyboardOptions.Default.copy(imeAction = ImeAction.Next)
+            )
 
+            Spacer(modifier = Modifier.height(20.dp))
+            Text(
+                "Notes:",
+                modifier = Modifier
+                    .fillMaxWidth(),
+                textAlign = TextAlign.Start
+            )
+            Spacer(modifier = Modifier.height(6.dp))
+            AppwhiteTextField(
+                // The email box details
+                value = notes,
+                onValueChange = { notes = it },
+                placeholderText = "",
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(150.dp),
+                keyboardOptions = KeyboardOptions.Default.copy(imeAction = ImeAction.Next)
+            )
+
+            Spacer(modifier = Modifier.height(20.dp))
+
+            basicButton(
+                onClick = { navController.navigate("UploadExam") },
+                imageContent = {
+                    Image(
+                        painter = painterResource(id = R.drawable.send_button),
+                        contentDescription = "Send Button",
+                        modifier = Modifier
+                            .size(40.dp),
+                    )
+                }
+            )
+
+
+        }
     }
 }
