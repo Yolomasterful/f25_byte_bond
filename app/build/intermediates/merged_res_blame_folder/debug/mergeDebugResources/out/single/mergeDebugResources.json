@@ -1,5 +1,9 @@
 [
     {
+        "merged": "com.example.myapplication.app-debug-56:/drawable_searchicon.png.flat",
+        "source": "com.example.myapplication.app-main-58:/drawable/searchicon.png"
+    },
+    {
         "merged": "com.example.myapplication.app-debug-56:/mipmap-xxxhdpi_backarrow.png.flat",
         "source": "com.example.myapplication.app-main-58:/mipmap-xxxhdpi/backarrow.png"
     },
@@ -22,6 +26,10 @@
     {
         "merged": "com.example.myapplication.app-debug-56:/mipmap-anydpi-v26_ic_launcher.xml.flat",
         "source": "com.example.myapplication.app-main-58:/mipmap-anydpi-v26/ic_launcher.xml"
+    },
+    {
+        "merged": "com.example.myapplication.app-debug-56:/drawable_importimage.png.flat",
+        "source": "com.example.myapplication.app-main-58:/drawable/importimage.png"
     },
     {
         "merged": "com.example.myapplication.app-debug-56:/drawable_ic_launcher_foreground.xml.flat",
