@@ -15,7 +15,11 @@ import com.example.myapplication.ui.theme.studentDashb.SDashboard
 import com.example.myapplication.ui.theme.professorDashb.PfDashboard
 import com.example.myapplication.ui.theme.proctorDashb.PDashboard
 import com.example.myapplication.ui.theme.adminDashb.ADashboard
+import com.example.myapplication.ui.theme.adminDashb.bookARoom.BookRoom
+import com.example.myapplication.ui.theme.adminDashb.bookARoom.RoomBooked
 import com.example.myapplication.ui.theme.adminDashb.inbox.AdminInbox
+import com.example.myapplication.ui.theme.proctorDashb.availability.SetAvailability
+import com.example.myapplication.ui.theme.proctorDashb.inbox.InboxPage
 
 // Additional screens
 import com.example.myapplication.ui.theme.professorDashb.inbox.Messages
@@ -116,6 +120,15 @@ fun AppNavHost(
             PDashboard(navController)
         }
 
+        composable("InboxPage") {
+            InboxPage(navController)
+        }
+
+        composable("SetAvailability") {
+            SetAvailability(navController)
+        }
+
+
         composable("AdminInbox") {
             AdminInbox(navController)
         }
@@ -126,5 +139,21 @@ fun AppNavHost(
         composable("dashboard_admin") {
             ADashboard(navController)
         }
+
+        composable("AdminInbox") {
+            AdminInbox(navController)
+        }
+
+        composable("BookRoom") {
+            BookRoom(navController)
+        }
+
+        composable("RoomBooked") {
+            RoomBooked(navController)
+        }
+
+
+
+
     }
 }

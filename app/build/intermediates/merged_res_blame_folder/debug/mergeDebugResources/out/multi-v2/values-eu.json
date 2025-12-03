@@ -4,41 +4,7 @@
             "outputFile": "com.example.myapplication.app-mergeDebugResources-54:/values-eu/values-eu.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\ORIENTAL VENDOR LTD\\.gradle\\caches\\8.13\\transforms\\7d9d5532029993483f66233c7edd61a3\\transformed\\ui-release\\res\\values-eu\\values-eu.xml",
-                    "from": {
-                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "105,192,283,364,465,569,661,737,824,913,997,1085,1175,1249,1334,1411,1493,1571,1648,1716",
-                        "endColumns": "86,90,80,100,103,91,75,86,88,83,87,89,73,84,76,81,77,76,67,119",
-                        "endOffsets": "187,278,359,460,564,656,732,819,908,992,1080,1170,1244,1329,1406,1488,1566,1643,1711,1831"
-                    },
-                    "to": {
-                        "startLines": "4,12,13,33,34,35,39,40,107,108,109,110,111,112,113,114,115,117,118,119",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "338,1156,1247,3703,3804,3908,4320,4396,11913,12002,12086,12174,12264,12338,12423,12500,12582,12761,12838,12906",
-                        "endColumns": "86,90,80,100,103,91,75,86,88,83,87,89,73,84,76,81,77,76,67,119",
-                        "endOffsets": "420,1242,1323,3799,3903,3995,4391,4478,11997,12081,12169,12259,12333,12418,12495,12577,12655,12833,12901,13021"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\ORIENTAL VENDOR LTD\\.gradle\\caches\\8.13\\transforms\\fe09961bbc0fa396e40050403d8139a8\\transformed\\core-1.17.0\\res\\values-eu\\values-eu.xml",
-                    "from": {
-                        "startLines": "2,3,4,5,6,7,8,9",
-                        "startColumns": "4,4,4,4,4,4,4,4",
-                        "startOffsets": "55,153,256,356,459,564,667,786",
-                        "endColumns": "97,102,99,102,104,102,118,100",
-                        "endOffsets": "148,251,351,454,559,662,781,882"
-                    },
-                    "to": {
-                        "startLines": "5,6,7,8,9,10,11,116",
-                        "startColumns": "4,4,4,4,4,4,4,4",
-                        "startOffsets": "425,523,626,726,829,934,1037,12660",
-                        "endColumns": "97,102,99,102,104,102,118,100",
-                        "endOffsets": "518,621,721,824,929,1032,1151,12756"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\ORIENTAL VENDOR LTD\\.gradle\\caches\\8.13\\transforms\\5952a811821154b6147c2e8f40055097\\transformed\\browser-1.4.0\\res\\values-eu\\values-eu.xml",
+                    "source": "/home/heshna/.gradle/caches/8.13/transforms/5952a811821154b6147c2e8f40055097/transformed/browser-1.4.0/res/values-eu/values-eu.xml",
                     "from": {
                         "startLines": "2,3,4,5",
                         "startColumns": "4,4,4,4",
@@ -55,7 +21,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\ORIENTAL VENDOR LTD\\.gradle\\caches\\8.13\\transforms\\3857d6e41ae0cb2e8b23202a42a63e65\\transformed\\material3\\res\\values-eu\\values-eu.xml",
+                    "source": "/home/heshna/.gradle/caches/8.13/transforms/3857d6e41ae0cb2e8b23202a42a63e65/transformed/material3/res/values-eu/values-eu.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
@@ -72,24 +38,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\ORIENTAL VENDOR LTD\\.gradle\\caches\\8.13\\transforms\\c67d1e2b3231a9e4df383fc2f6f05045\\transformed\\play-services-basement-18.4.0\\res\\values-eu\\values.xml",
-                    "from": {
-                        "startLines": "4",
-                        "startColumns": "0",
-                        "startOffsets": "195",
-                        "endColumns": "138",
-                        "endOffsets": "333"
-                    },
-                    "to": {
-                        "startLines": "22",
-                        "startColumns": "4",
-                        "startOffsets": "2346",
-                        "endColumns": "142",
-                        "endOffsets": "2484"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\ORIENTAL VENDOR LTD\\.gradle\\caches\\8.13\\transforms\\3d17814b1d19e21b0a11c112bab54a54\\transformed\\credentials-1.2.0-rc01\\res\\values-eu\\values-eu.xml",
+                    "source": "/home/heshna/.gradle/caches/8.13/transforms/3d17814b1d19e21b0a11c112bab54a54/transformed/credentials-1.2.0-rc01/res/values-eu/values-eu.xml",
                     "from": {
                         "startLines": "2,3",
                         "startColumns": "4,4",
@@ -106,24 +55,58 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\ORIENTAL VENDOR LTD\\.gradle\\caches\\8.13\\transforms\\517d70478b0b4cc540a7be74993fa97c\\transformed\\play-services-base-18.0.1\\res\\values-eu\\values.xml",
+                    "source": "/home/heshna/.gradle/caches/8.13/transforms/c67d1e2b3231a9e4df383fc2f6f05045/transformed/play-services-basement-18.4.0/res/values-eu/values.xml",
                     "from": {
-                        "startLines": "4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20",
-                        "startColumns": "0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0",
-                        "startOffsets": "193,293,461,581,686,834,955,1075,1179,1353,1457,1616,1740,1890,2046,2108,2169",
-                        "endColumns": "99,167,119,104,147,120,119,103,173,103,158,123,149,155,61,60,87",
-                        "endOffsets": "292,460,580,685,833,954,1074,1178,1352,1456,1615,1739,1889,2045,2107,2168,2256"
+                        "startLines": "4",
+                        "startColumns": "0",
+                        "startOffsets": "195",
+                        "endColumns": "138",
+                        "endOffsets": "333"
                     },
                     "to": {
-                        "startLines": "14,15,16,17,18,19,20,21,23,24,25,26,27,28,29,30,31",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "1328,1432,1604,1728,1837,1989,2114,2238,2489,2667,2775,2938,3066,3220,3380,3446,3511",
-                        "endColumns": "103,171,123,108,151,124,123,107,177,107,162,127,153,159,65,64,91",
-                        "endOffsets": "1427,1599,1723,1832,1984,2109,2233,2341,2662,2770,2933,3061,3215,3375,3441,3506,3598"
+                        "startLines": "22",
+                        "startColumns": "4",
+                        "startOffsets": "2346",
+                        "endColumns": "142",
+                        "endOffsets": "2484"
                     }
                 },
                 {
-                    "source": "C:\\Users\\ORIENTAL VENDOR LTD\\.gradle\\caches\\8.13\\transforms\\feb671f18cc54e56630fc0e87863776a\\transformed\\foundation-release\\res\\values-eu\\values-eu.xml",
+                    "source": "/home/heshna/.gradle/caches/8.13/transforms/7d9d5532029993483f66233c7edd61a3/transformed/ui-release/res/values-eu/values-eu.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "105,192,283,364,465,569,661,737,824,913,997,1085,1175,1249,1334,1411,1493,1571,1648,1716",
+                        "endColumns": "86,90,80,100,103,91,75,86,88,83,87,89,73,84,76,81,77,76,67,119",
+                        "endOffsets": "187,278,359,460,564,656,732,819,908,992,1080,1170,1244,1329,1406,1488,1566,1643,1711,1831"
+                    },
+                    "to": {
+                        "startLines": "4,12,13,33,34,35,39,40,107,108,109,110,111,112,113,114,115,117,118,119",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "338,1156,1247,3703,3804,3908,4320,4396,11913,12002,12086,12174,12264,12338,12423,12500,12582,12761,12838,12906",
+                        "endColumns": "86,90,80,100,103,91,75,86,88,83,87,89,73,84,76,81,77,76,67,119",
+                        "endOffsets": "420,1242,1323,3799,3903,3995,4391,4478,11997,12081,12169,12259,12333,12418,12495,12577,12655,12833,12901,13021"
+                    }
+                },
+                {
+                    "source": "/home/heshna/.gradle/caches/8.13/transforms/fe09961bbc0fa396e40050403d8139a8/transformed/core-1.17.0/res/values-eu/values-eu.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8,9",
+                        "startColumns": "4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,153,256,356,459,564,667,786",
+                        "endColumns": "97,102,99,102,104,102,118,100",
+                        "endOffsets": "148,251,351,454,559,662,781,882"
+                    },
+                    "to": {
+                        "startLines": "5,6,7,8,9,10,11,116",
+                        "startColumns": "4,4,4,4,4,4,4,4",
+                        "startOffsets": "425,523,626,726,829,934,1037,12660",
+                        "endColumns": "97,102,99,102,104,102,118,100",
+                        "endOffsets": "518,621,721,824,929,1032,1151,12756"
+                    }
+                },
+                {
+                    "source": "/home/heshna/.gradle/caches/8.13/transforms/feb671f18cc54e56630fc0e87863776a/transformed/foundation-release/res/values-eu/values-eu.xml",
                     "from": {
                         "startLines": "3,4",
                         "startColumns": "4,4",
@@ -137,6 +120,23 @@
                         "startOffsets": "13026,13112",
                         "endColumns": "85,88",
                         "endOffsets": "13107,13196"
+                    }
+                },
+                {
+                    "source": "/home/heshna/.gradle/caches/8.13/transforms/517d70478b0b4cc540a7be74993fa97c/transformed/play-services-base-18.0.1/res/values-eu/values.xml",
+                    "from": {
+                        "startLines": "4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20",
+                        "startColumns": "0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0",
+                        "startOffsets": "193,293,461,581,686,834,955,1075,1179,1353,1457,1616,1740,1890,2046,2108,2169",
+                        "endColumns": "99,167,119,104,147,120,119,103,173,103,158,123,149,155,61,60,87",
+                        "endOffsets": "292,460,580,685,833,954,1074,1178,1352,1456,1615,1739,1889,2045,2107,2168,2256"
+                    },
+                    "to": {
+                        "startLines": "14,15,16,17,18,19,20,21,23,24,25,26,27,28,29,30,31",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "1328,1432,1604,1728,1837,1989,2114,2238,2489,2667,2775,2938,3066,3220,3380,3446,3511",
+                        "endColumns": "103,171,123,108,151,124,123,107,177,107,162,127,153,159,65,64,91",
+                        "endOffsets": "1427,1599,1723,1832,1984,2109,2233,2341,2662,2770,2933,3061,3215,3375,3441,3506,3598"
                     }
                 }
             ]

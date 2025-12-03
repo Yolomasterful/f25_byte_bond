@@ -1,0 +1,592 @@
+Index: app/src/main/java/com/example/myapplication/MainActivity.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.myapplication\nimport com.example.myapplication.ui.theme.SelectUserType\nimport com.example.myapplication.ui.theme.MyApplicationTheme\nimport android.os.Bundle\nimport androidx.activity.ComponentActivity\nimport androidx.activity.compose.setContent\nimport androidx.compose.foundation.layout.*\nimport androidx.compose.material3.Scaffold\nimport androidx.compose.material3.Text\nimport androidx.compose.runtime.Composable\nimport androidx.compose.ui.Modifier\nimport androidx.compose.material3.ExperimentalMaterial3Api\nimport androidx.compose.material3.MaterialTheme\nimport androidx.compose.ui.res.painterResource\nimport androidx.compose.ui.res.stringResource\nimport androidx.compose.material3.TopAppBar\nimport androidx.compose.foundation.Image\nimport androidx.navigation.compose.rememberNavController\nimport androidx.navigation.NavHostController\nimport androidx.navigation.compose.NavHost\nimport androidx.navigation.compose.composable\nimport androidx.compose.material3.Surface\nimport androidx.compose.material3.TopAppBarDefaults\nimport androidx.navigation.compose.currentBackStackEntryAsState\nimport androidx.compose.runtime.getValue\nimport com.example.myapplication.ui.theme.adminDashb.ADashboard\nimport com.example.myapplication.ui.theme.adminDashb.AdminLogin\nimport com.example.myapplication.ui.theme.proctorDashb.PDashboard\nimport com.example.myapplication.ui.theme.studentDashb.StudentLogin\nimport com.example.myapplication.ui.theme.studentDashb.SDashboard\nimport com.example.myapplication.ui.theme.professorDashb.PfDashboard\nimport com.example.myapplication.ui.theme.professorDashb.ProfessorLogin\nimport com.example.myapplication.ui.theme.professorDashb.inbox.Messages\nimport com.example.myapplication.ui.theme.proctorDashb.ProctorLogin\nimport com.example.myapplication.ui.theme.professorDashb.bookExams.ExamReqForm\nimport com.example.myapplication.ui.theme.professorDashb.bookExams.ExamReqSent\nimport com.example.myapplication.ui.theme.professorDashb.bookExams.UploadExam\nimport com.example.myapplication.ui.theme.professorDashb.inbox.ChatScreen\nimport com.example.myapplication.ui.theme.studentDashb.deferralRequests.StatusViewerScreen\nimport com.example.myapplication.ui.theme.studentDashb.deferralRequests.ExamDetailScreen\nimport com.example.myapplication.ui.theme.studentDashb.requestDeferral.ExamDeferralForm\nimport com.example.myapplication.ui.theme.studentDashb.requestDeferral.RequestSent\nimport com.example.myapplication.ui.theme.studentDashb.requestDeferral.ExamDeferralForm2\n\n\n//Class structure of the app that helps point the user to the start of the app screen.\nenum class AppScreen {\n    TypeUser,\n}\n\n// MainActivity function responsible for running the main program\nclass MainActivity : ComponentActivity() {\n    override fun onCreate(savedInstanceState: Bundle?) {\n        super.onCreate(savedInstanceState)\n        //setContentView(R.layout.activity_main)\n        setContent {\n            MyApplicationTheme(dynamicColor = false) {\n                Surface(\n                    modifier = Modifier.fillMaxSize(),\n                    color = MaterialTheme.colorScheme.background\n                ) {\n                    ExamDeferApp()\n                }\n            }\n        }\n    }\n}\n@OptIn(ExperimentalMaterial3Api::class)\n// The following function ensures the main app top bar is not visible until the\n// user went past the dashboard pages.\n@Composable\nfun ExamDeferAppBar(\n    modifier: Modifier = Modifier\n) {\n    TopAppBar(\n        // Title of the navigation bar\n        title = { Text(stringResource(id = R.string.app_name), color = MaterialTheme.colorScheme.onPrimary) },\n        colors = TopAppBarDefaults.topAppBarColors(\n            containerColor = MaterialTheme.colorScheme.primary\n        ),\n        modifier = modifier,\n        // Icon for the top bar\n        navigationIcon = {\n            Image(\n                painter = painterResource(id = R.mipmap.macewan_logo),\n                contentDescription = \"Macewan Logo\",\n                modifier = Modifier\n            )\n\n        }\n    )\n}\n\n@OptIn(ExperimentalMaterial3Api::class)\n@Composable\n// Function for the skeleton of the entire app.\nfun ExamDeferApp(\n    navController: NavHostController = rememberNavController()\n) {\n    val currentBackStackEntry by navController.currentBackStackEntryAsState()\n    val currentRoute = currentBackStackEntry?.destination?.route\n    Scaffold(\n//        topBar = {\n//            if ((currentRoute != AppScreen.Login.name) && (currentRoute != AppScreen.TypeUser.name)) {\n//                ExamDeferAppBar()\n//            }\n//        }\n    )\n    { innerPadding ->\n\n        NavHost(\n            navController = navController,\n            startDestination = AppScreen.TypeUser.name,\n            modifier = Modifier.padding(innerPadding)\n        ) {\n            composable(route = AppScreen.TypeUser.name) {\n                SelectUserType(navController)\n            }\n\n            //////////////////////////////////////////////////\n            // Student Pages\n            composable(\"login_student\") {\n                StudentLogin(navController)\n            }\n            composable(\"student_dashboard\") {\n                SDashboard(navController)\n            }\n\n            composable(\"StatusViewerScreen\") {\n                StatusViewerScreen(navController)\n            }\n\n            composable(\"ExamDetailScreen\") {\n                ExamDetailScreen(navController)\n            }\n\n            composable(\"ExamDeferralForm\") {\n                ExamDeferralForm(navController)\n            }\n\n            composable(\"RequestSent\") {\n                RequestSent(navController)\n            }\n\n            composable(\"ExamDeferralForm2\") {\n                ExamDeferralForm2(navController)\n            }\n\n            //////////////////////////////////////////////////\n\n            //////////////////////////////////////////////////\n            // Professor Pages\n            composable(\"login_professor\") {\n                ProfessorLogin(navController)\n            }\n\n            composable(\"professor_dashboard\") {\n                PfDashboard(navController)\n            }\n\n            composable(\"Messages\") {\n                Messages(navController)\n            }\n\n            composable(\"Chat/{conversationId}\") { backStackEntry ->\n                val id = backStackEntry.arguments?.getString(\"conversationId\")!!\n                ChatScreen(conversationId = id)\n            }\n\n            composable(\"ExamReqForm\") {\n                ExamReqForm(navController)\n            }\n\n            composable(\"ExamReqSent\") {\n                ExamReqSent(navController)\n            }\n\n            composable(\"UploadExam\") {\n                UploadExam(navController)\n            }\n\n            //////////////////////////////////////////////////\n\n            //////////////////////////////////////////////////\n            // Proctor Pages\n            composable(\"login_proctor\") {\n                ProctorLogin(navController)\n            }\n\n            composable(\"proctor_dashboard\") {\n                PDashboard(navController)\n            }\n\n            //////////////////////////////////////////////////\n\n            //////////////////////////////////////////////////\n            // Admin Pages\n            composable(\"login_admin\") {\n                AdminLogin(navController)\n            }\n\n            composable(\"admin_dashboard\") {\n                ADashboard(navController)\n            }\n\n            //////////////////////////////////////////////////\n\n\n        }\n    }\n}\n\n@Composable\nfun UploadExam(x0: NavHostController) {\n    TODO(\"Not yet implemented\")\n}\n\n@Composable\nfun ExamReqSent(x0: NavHostController) {\n    TODO(\"Not yet implemented\")\n}\n\n\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/myapplication/MainActivity.kt b/app/src/main/java/com/example/myapplication/MainActivity.kt
+--- a/app/src/main/java/com/example/myapplication/MainActivity.kt	(revision 1f053494d1cfbe8a00842552c8b34c48e0018fbb)
++++ b/app/src/main/java/com/example/myapplication/MainActivity.kt	(date 1764530175092)
+@@ -162,10 +162,10 @@
+                 Messages(navController)
+             }
+ 
+-            composable("Chat/{conversationId}") { backStackEntry ->
+-                val id = backStackEntry.arguments?.getString("conversationId")!!
+-                ChatScreen(conversationId = id)
+-            }
++//            composable("Chat/{conversationId}") { backStackEntry ->
++//                val id = backStackEntry.arguments?.getString("conversationId")!!
++//                ChatScreen(conversationId = id)
++//            }
+ 
+             composable("ExamReqForm") {
+                 ExamReqForm(navController)
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<project version=\"4\">\n  <component name=\"AndroidLayouts\">\n    <shared>\n      <config />\n    </shared>\n    <layouts>\n      <layout url=\"file://$PROJECT_DIR$/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml\">\n        <config>\n          <theme>@style/Theme.MyApplication</theme>\n        </config>\n      </layout>\n    </layouts>\n  </component>\n  <component name=\"AutoImportSettings\">\n    <option name=\"autoReloadType\" value=\"NONE\" />\n  </component>\n  <component name=\"ChangeListManager\">\n    <list default=\"true\" id=\"193d9b95-0f51-44ef-beb1-de87a45071f7\" name=\"Changes\" comment=\"Add a pointer to the logout button\">\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/app/src/main/java/com/example/myapplication/ui/theme/adminDashb/bookARoom/BookRoom.kt\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/app/src/main/java/com/example/myapplication/ui/theme/adminDashb/bookARoom/BookRoom.kt\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/app/src/main/java/com/example/myapplication/ui/theme/adminDashb/bookARoom/RoomBooked.kt\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/app/src/main/java/com/example/myapplication/ui/theme/adminDashb/bookARoom/RoomBooked.kt\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/app/src/main/java/com/example/myapplication/ui/theme/adminDashb/inbox/AdminInbox.kt\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/app/src/main/java/com/example/myapplication/ui/theme/adminDashb/inbox/AdminInbox.kt\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/app/src/main/java/com/example/myapplication/ui/theme/proctorDashb/availability/SetAvailability.kt\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/app/src/main/java/com/example/myapplication/ui/theme/proctorDashb/availability/SetAvailability.kt\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/app/src/main/java/com/example/myapplication/ui/theme/proctorDashb/availability/ViewSchedule.kt\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/app/src/main/java/com/example/myapplication/ui/theme/proctorDashb/availability/ViewSchedule.kt\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/app/src/main/java/com/example/myapplication/ui/theme/proctorDashb/inbox/InboxPage.kt\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/app/src/main/java/com/example/myapplication/ui/theme/proctorDashb/inbox/InboxPage.kt\" afterDir=\"false\" />\n    </list>\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\n  </component>\n  <component name=\"ClangdSettings\">\n    <option name=\"formatViaClangd\" value=\"false\" />\n  </component>\n  <component name=\"ExecutionTargetManager\" SELECTED_TARGET=\"device_and_snapshot_combo_box_target[DeviceId(pluginId=LocalEmulator, isTemplate=false, identifier=path=/home/heshna/.android/avd/Medium_Phone.avd)]\" />\n  <component name=\"ExternalProjectsData\">\n    <projectState path=\"$PROJECT_DIR$\">\n      <ProjectState />\n    </projectState>\n  </component>\n  <component name=\"ExternalProjectsManager\">\n    <system id=\"GRADLE\">\n      <state>\n        <projects_view>\n          <tree_state>\n            <expand>\n              <path>\n                <item name=\"\" type=\"6a2764b6:ExternalProjectsStructure$RootNode\" />\n                <item name=\"My Application\" type=\"f1a62948:ProjectNode\" />\n              </path>\n            </expand>\n            <select />\n          </tree_state>\n        </projects_view>\n      </state>\n    </system>\n  </component>\n  <component name=\"FileTemplateManagerImpl\">\n    <option name=\"RECENT_TEMPLATES\">\n      <list>\n        <option value=\"Kotlin Class\" />\n        <option value=\"Kotlin File\" />\n      </list>\n    </option>\n  </component>\n  <component name=\"Git.Settings\">\n    <option name=\"RECENT_BRANCH_BY_REPOSITORY\">\n      <map>\n        <entry key=\"$PROJECT_DIR$\" value=\"recovered-heshna2\" />\n      </map>\n    </option>\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\n  </component>\n  <component name=\"GitHubPullRequestSearchHistory\">{\n  &quot;lastFilter&quot;: {\n    &quot;state&quot;: &quot;OPEN&quot;,\n    &quot;assignee&quot;: &quot;heshnaB&quot;\n  }\n}</component>\n  <component name=\"GithubPullRequestsUISettings\"><![CDATA[{\n  \"selectedUrlAndAccountId\": {\n    \"url\": \"https://github.com/heshnaB/f25_byte_bond.git\",\n    \"accountId\": \"7e8b673a-fe5d-4432-9af0-c3b55fcf60b8\"\n  },\n  \"recentNewPullRequestHead\": {\n    \"server\": {\n      \"useHttp\": false,\n      \"host\": \"github.com\",\n      \"port\": null,\n      \"suffix\": null\n    },\n    \"owner\": \"Yolomasterful\",\n    \"repository\": \"f25_byte_bond\"\n  }\n}]]></component>\n  <component name=\"ProblemsViewState\">\n    <option name=\"selectedTabId\" value=\"CurrentFile\" />\n  </component>\n  <component name=\"ProjectColorInfo\">{\n  &quot;customColor&quot;: &quot;&quot;,\n  &quot;associatedIndex&quot;: 2\n}</component>\n  <component name=\"ProjectId\" id=\"34Mi2lGhr51zvN5TPfpAa3gMoHP\" />\n  <component name=\"ProjectViewState\">\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\n    <option name=\"showLibraryContents\" value=\"true\" />\n  </component>\n  <component name=\"PropertiesComponent\"><![CDATA[{\n  \"keyToString\": {\n    \"Android App.Exam Defer.executor\": \"Run\",\n    \"Android App.MainActivity.executor\": \"Run\",\n    \"ModuleVcsDetector.initialDetectionPerformed\": \"true\",\n    \"RunOnceActivity.ShowReadmeOnStart\": \"true\",\n    \"RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager\": \"true\",\n    \"RunOnceActivity.cidr.known.project.marker\": \"true\",\n    \"RunOnceActivity.git.unshallow\": \"true\",\n    \"RunOnceActivity.readMode.enableVisualFormatting\": \"true\",\n    \"SHARE_PROJECT_CONFIGURATION_FILES\": \"true\",\n    \"cf.first.check.clang-format\": \"false\",\n    \"cidr.known.project.marker\": \"true\",\n    \"git-widget-placeholder\": \"heshna2\",\n    \"last_opened_file_path\": \"/home/heshna/AndroidStudioProjects/f25_byte_bond/app/src/main/res/drawable\",\n    \"settings.editor.selected.configurable\": \"reference.settingsdialog.project.gradle\",\n    \"vcs.patch.path\": \"/home/heshna/Documents/Fall 2025/software engineering\"\n  }\n}]]></component>\n  <component name=\"RecentsManager\">\n    <key name=\"CopyFile.RECENT_KEYS\">\n      <recent name=\"$PROJECT_DIR$/app/src/main/res/drawable\" />\n      <recent name=\"$PROJECT_DIR$/app/src/main/res/mipmap-xxxhdpi\" />\n    </key>\n    <key name=\"MoveFile.RECENT_KEYS\">\n      <recent name=\"C:\\Users\\ORIENTAL VENDOR LTD\\StudioProjects\\f25_byte_bond\\app\\src\\main\\java\\com\\example\\myapplication\\data\" />\n      <recent name=\"$PROJECT_DIR$/app/src/main/res/drawable\" />\n    </key>\n    <key name=\"K2MoveDeclarationsDialog.RECENT_PACKAGE_KEY\">\n      <recent name=\"com.example.myapplication.ui.theme\" />\n      <recent name=\"com.example.myapplication.ui.theme.studentDashb\" />\n      <recent name=\"com.example.myapplication.ui.theme.professorDashb.Inbox.Requests\" />\n    </key>\n  </component>\n  <component name=\"RunManager\" selected=\"Android App.Exam Defer\">\n    <configuration name=\"Exam Defer\" type=\"AndroidRunConfigurationType\" factoryName=\"Android App\" activateToolWindowBeforeRun=\"false\">\n      <module name=\"My_Application.app\" />\n      <option name=\"ANDROID_RUN_CONFIGURATION_SCHEMA_VERSION\" value=\"1\" />\n      <option name=\"DEPLOY\" value=\"true\" />\n      <option name=\"DEPLOY_APK_FROM_BUNDLE\" value=\"false\" />\n      <option name=\"DEPLOY_AS_INSTANT\" value=\"false\" />\n      <option name=\"ARTIFACT_NAME\" value=\"\" />\n      <option name=\"PM_INSTALL_OPTIONS\" value=\"\" />\n      <option name=\"ALL_USERS\" value=\"false\" />\n      <option name=\"ALWAYS_INSTALL_WITH_PM\" value=\"false\" />\n      <option name=\"ALLOW_ASSUME_VERIFIED\" value=\"false\" />\n      <option name=\"CLEAR_APP_STORAGE\" value=\"false\" />\n      <option name=\"DYNAMIC_FEATURES_DISABLED_LIST\" value=\"\" />\n      <option name=\"ACTIVITY_EXTRA_FLAGS\" value=\"\" />\n      <option name=\"MODE\" value=\"default_activity\" />\n      <option name=\"RESTORE_ENABLED\" value=\"false\" />\n      <option name=\"RESTORE_FILE\" value=\"\" />\n      <option name=\"RESTORE_FRESH_INSTALL_ONLY\" value=\"false\" />\n      <option name=\"CLEAR_LOGCAT\" value=\"false\" />\n      <option name=\"SHOW_LOGCAT_AUTOMATICALLY\" value=\"false\" />\n      <option name=\"TARGET_SELECTION_MODE\" value=\"DEVICE_AND_SNAPSHOT_COMBO_BOX\" />\n      <option name=\"SELECTED_CLOUD_MATRIX_CONFIGURATION_ID\" value=\"-1\" />\n      <option name=\"SELECTED_CLOUD_MATRIX_PROJECT_ID\" value=\"\" />\n      <option name=\"DEBUGGER_TYPE\" value=\"Auto\" />\n      <Auto>\n        <option name=\"USE_JAVA_AWARE_DEBUGGER\" value=\"false\" />\n        <option name=\"SHOW_STATIC_VARS\" value=\"true\" />\n        <option name=\"WORKING_DIR\" value=\"\" />\n        <option name=\"TARGET_LOGGING_CHANNELS\" value=\"lldb process:gdb-remote packets\" />\n        <option name=\"SHOW_OPTIMIZED_WARNING\" value=\"true\" />\n        <option name=\"ATTACH_ON_WAIT_FOR_DEBUGGER\" value=\"false\" />\n        <option name=\"DEBUG_SANDBOX_SDK\" value=\"false\" />\n      </Auto>\n      <Hybrid>\n        <option name=\"USE_JAVA_AWARE_DEBUGGER\" value=\"false\" />\n        <option name=\"SHOW_STATIC_VARS\" value=\"true\" />\n        <option name=\"WORKING_DIR\" value=\"\" />\n        <option name=\"TARGET_LOGGING_CHANNELS\" value=\"lldb process:gdb-remote packets\" />\n        <option name=\"SHOW_OPTIMIZED_WARNING\" value=\"true\" />\n        <option name=\"ATTACH_ON_WAIT_FOR_DEBUGGER\" value=\"false\" />\n        <option name=\"DEBUG_SANDBOX_SDK\" value=\"false\" />\n      </Hybrid>\n      <Java>\n        <option name=\"ATTACH_ON_WAIT_FOR_DEBUGGER\" value=\"false\" />\n        <option name=\"DEBUG_SANDBOX_SDK\" value=\"false\" />\n      </Java>\n      <Native>\n        <option name=\"USE_JAVA_AWARE_DEBUGGER\" value=\"false\" />\n        <option name=\"SHOW_STATIC_VARS\" value=\"true\" />\n        <option name=\"WORKING_DIR\" value=\"\" />\n        <option name=\"TARGET_LOGGING_CHANNELS\" value=\"lldb process:gdb-remote packets\" />\n        <option name=\"SHOW_OPTIMIZED_WARNING\" value=\"true\" />\n        <option name=\"ATTACH_ON_WAIT_FOR_DEBUGGER\" value=\"false\" />\n        <option name=\"DEBUG_SANDBOX_SDK\" value=\"false\" />\n      </Native>\n      <Profilers>\n        <option name=\"ADVANCED_PROFILING_ENABLED\" value=\"false\" />\n        <option name=\"STARTUP_PROFILING_ENABLED\" value=\"false\" />\n        <option name=\"STARTUP_CPU_PROFILING_ENABLED\" value=\"false\" />\n        <option name=\"STARTUP_CPU_PROFILING_CONFIGURATION_NAME\" value=\"Java/Kotlin Method Sample (legacy)\" />\n        <option name=\"STARTUP_NATIVE_MEMORY_PROFILING_ENABLED\" value=\"false\" />\n        <option name=\"NATIVE_MEMORY_SAMPLE_RATE_BYTES\" value=\"2048\" />\n      </Profilers>\n      <option name=\"DEEP_LINK\" value=\"\" />\n      <option name=\"ACTIVITY\" value=\"\" />\n      <option name=\"ACTIVITY_CLASS\" value=\"\" />\n      <option name=\"SEARCH_ACTIVITY_IN_GLOBAL_SCOPE\" value=\"false\" />\n      <option name=\"SKIP_ACTIVITY_VALIDATION\" value=\"false\" />\n      <method v=\"2\">\n        <option name=\"Android.Gradle.BeforeRunTask\" enabled=\"true\" goal=\"testDebugUnitTest\" />\n        <option name=\"Android.Gradle.BeforeRunTask\" enabled=\"true\" goal=\"testReleaseUnitTest\" />\n      </method>\n    </configuration>\n    <configuration name=\"MainActivity\" type=\"AndroidRunConfigurationType\" factoryName=\"Android App\" activateToolWindowBeforeRun=\"false\" temporary=\"true\">\n      <module name=\"My_Application.app\" />\n      <option name=\"ANDROID_RUN_CONFIGURATION_SCHEMA_VERSION\" value=\"1\" />\n      <option name=\"DEPLOY\" value=\"true\" />\n      <option name=\"DEPLOY_APK_FROM_BUNDLE\" value=\"false\" />\n      <option name=\"DEPLOY_AS_INSTANT\" value=\"false\" />\n      <option name=\"ARTIFACT_NAME\" value=\"\" />\n      <option name=\"PM_INSTALL_OPTIONS\" value=\"\" />\n      <option name=\"ALL_USERS\" value=\"false\" />\n      <option name=\"ALWAYS_INSTALL_WITH_PM\" value=\"false\" />\n      <option name=\"ALLOW_ASSUME_VERIFIED\" value=\"false\" />\n      <option name=\"CLEAR_APP_STORAGE\" value=\"false\" />\n      <option name=\"DYNAMIC_FEATURES_DISABLED_LIST\" value=\"\" />\n      <option name=\"ACTIVITY_EXTRA_FLAGS\" value=\"\" />\n      <option name=\"MODE\" value=\"specific_activity\" />\n      <option name=\"RESTORE_ENABLED\" value=\"false\" />\n      <option name=\"RESTORE_FILE\" value=\"\" />\n      <option name=\"RESTORE_FRESH_INSTALL_ONLY\" value=\"false\" />\n      <option name=\"CLEAR_LOGCAT\" value=\"false\" />\n      <option name=\"SHOW_LOGCAT_AUTOMATICALLY\" value=\"false\" />\n      <option name=\"TARGET_SELECTION_MODE\" value=\"DEVICE_AND_SNAPSHOT_COMBO_BOX\" />\n      <option name=\"SELECTED_CLOUD_MATRIX_CONFIGURATION_ID\" value=\"-1\" />\n      <option name=\"SELECTED_CLOUD_MATRIX_PROJECT_ID\" value=\"\" />\n      <option name=\"DEBUGGER_TYPE\" value=\"Auto\" />\n      <Auto>\n        <option name=\"USE_JAVA_AWARE_DEBUGGER\" value=\"false\" />\n        <option name=\"SHOW_STATIC_VARS\" value=\"true\" />\n        <option name=\"WORKING_DIR\" value=\"\" />\n        <option name=\"TARGET_LOGGING_CHANNELS\" value=\"lldb process:gdb-remote packets\" />\n        <option name=\"SHOW_OPTIMIZED_WARNING\" value=\"true\" />\n        <option name=\"ATTACH_ON_WAIT_FOR_DEBUGGER\" value=\"false\" />\n        <option name=\"DEBUG_SANDBOX_SDK\" value=\"false\" />\n      </Auto>\n      <Hybrid>\n        <option name=\"USE_JAVA_AWARE_DEBUGGER\" value=\"false\" />\n        <option name=\"SHOW_STATIC_VARS\" value=\"true\" />\n        <option name=\"WORKING_DIR\" value=\"\" />\n        <option name=\"TARGET_LOGGING_CHANNELS\" value=\"lldb process:gdb-remote packets\" />\n        <option name=\"SHOW_OPTIMIZED_WARNING\" value=\"true\" />\n        <option name=\"ATTACH_ON_WAIT_FOR_DEBUGGER\" value=\"false\" />\n        <option name=\"DEBUG_SANDBOX_SDK\" value=\"false\" />\n      </Hybrid>\n      <Java>\n        <option name=\"ATTACH_ON_WAIT_FOR_DEBUGGER\" value=\"false\" />\n        <option name=\"DEBUG_SANDBOX_SDK\" value=\"false\" />\n      </Java>\n      <Native>\n        <option name=\"USE_JAVA_AWARE_DEBUGGER\" value=\"false\" />\n        <option name=\"SHOW_STATIC_VARS\" value=\"true\" />\n        <option name=\"WORKING_DIR\" value=\"\" />\n        <option name=\"TARGET_LOGGING_CHANNELS\" value=\"lldb process:gdb-remote packets\" />\n        <option name=\"SHOW_OPTIMIZED_WARNING\" value=\"true\" />\n        <option name=\"ATTACH_ON_WAIT_FOR_DEBUGGER\" value=\"false\" />\n        <option name=\"DEBUG_SANDBOX_SDK\" value=\"false\" />\n      </Native>\n      <Profilers>\n        <option name=\"ADVANCED_PROFILING_ENABLED\" value=\"false\" />\n        <option name=\"STARTUP_PROFILING_ENABLED\" value=\"false\" />\n        <option name=\"STARTUP_CPU_PROFILING_ENABLED\" value=\"false\" />\n        <option name=\"STARTUP_CPU_PROFILING_CONFIGURATION_NAME\" value=\"Java/Kotlin Method Sample (legacy)\" />\n        <option name=\"STARTUP_NATIVE_MEMORY_PROFILING_ENABLED\" value=\"false\" />\n        <option name=\"NATIVE_MEMORY_SAMPLE_RATE_BYTES\" value=\"2048\" />\n      </Profilers>\n      <option name=\"DEEP_LINK\" value=\"\" />\n      <option name=\"ACTIVITY\" value=\"\" />\n      <option name=\"ACTIVITY_CLASS\" value=\"com.example.myapplication.MainActivity\" />\n      <option name=\"SEARCH_ACTIVITY_IN_GLOBAL_SCOPE\" value=\"false\" />\n      <option name=\"SKIP_ACTIVITY_VALIDATION\" value=\"false\" />\n      <method v=\"2\">\n        <option name=\"Android.Gradle.BeforeRunTask\" enabled=\"true\" />\n      </method>\n    </configuration>\n    <list>\n      <item itemvalue=\"Android App.Exam Defer\" />\n      <item itemvalue=\"Android App.MainActivity\" />\n    </list>\n    <recent_temporary>\n      <list>\n        <item itemvalue=\"Android App.MainActivity\" />\n        <item itemvalue=\"Android App.MainActivity\" />\n        <item itemvalue=\"Android App.MainActivity\" />\n        <item itemvalue=\"Android App.MainActivity\" />\n        <item itemvalue=\"Android App.MainActivity\" />\n      </list>\n    </recent_temporary>\n  </component>\n  <component name=\"TaskManager\">\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\n      <changelist id=\"193d9b95-0f51-44ef-beb1-de87a45071f7\" name=\"Changes\" comment=\"\" />\n      <created>1761029636477</created>\n      <option name=\"number\" value=\"Default\" />\n      <option name=\"presentableId\" value=\"Default\" />\n      <updated>1761029636477</updated>\n    </task>\n    <task id=\"LOCAL-00001\" summary=\"Organized the code according to the folder structures, and imported the login screen into another folder.\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1761857019211</created>\n      <option name=\"number\" value=\"00001\" />\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1761857019211</updated>\n    </task>\n    <task id=\"LOCAL-00002\" summary=\"Organized the code according to the folder structures, and imported the login screen into another folder.\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1762156423510</created>\n      <option name=\"number\" value=\"00002\" />\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1762156423510</updated>\n    </task>\n    <task id=\"LOCAL-00003\" summary=\"Completed the dahsboards, select usertype page, made changes to the login page, and changed the theme.\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1762156709175</created>\n      <option name=\"number\" value=\"00003\" />\n      <option name=\"presentableId\" value=\"LOCAL-00003\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1762156709175</updated>\n    </task>\n    <task id=\"LOCAL-00004\" summary=\"Created a main dashboard layout for all users.\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1762225979738</created>\n      <option name=\"number\" value=\"00004\" />\n      <option name=\"presentableId\" value=\"LOCAL-00004\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1762225979738</updated>\n    </task>\n    <task id=\"LOCAL-00005\" summary=\"Add a pointer to the logout button\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1762464469132</created>\n      <option name=\"number\" value=\"00005\" />\n      <option name=\"presentableId\" value=\"LOCAL-00005\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1762464469133</updated>\n    </task>\n    <option name=\"localTasksCounter\" value=\"6\" />\n    <servers />\n  </component>\n  <component name=\"Vcs.Log.Tabs.Properties\">\n    <option name=\"TAB_STATES\">\n      <map>\n        <entry key=\"MAIN\">\n          <value>\n            <State />\n          </value>\n        </entry>\n      </map>\n    </option>\n  </component>\n  <component name=\"VcsManagerConfiguration\">\n    <MESSAGE value=\"Organized the code according to the folder structures, and imported the login screen into another folder.\" />\n    <MESSAGE value=\"Completed the dahsboards, select usertype page, made changes to the login page, and changed the theme.\" />\n    <MESSAGE value=\"Created a main dashboard layout for all users.\" />\n    <MESSAGE value=\"Add a pointer to the logout button\" />\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"Add a pointer to the logout button\" />\n  </component>\n  <component name=\"play_dynamic_filters_status\">\n    <option name=\"appIdToCheckInfo\">\n      <map>\n        <entry key=\"com.example.myapplication\">\n          <value>\n            <CheckInfo lastCheckTimestamp=\"1762136366214\" />\n          </value>\n        </entry>\n        <entry key=\"com.example.myapplication.test\">\n          <value>\n            <CheckInfo lastCheckTimestamp=\"1762136366217\" />\n          </value>\n        </entry>\n      </map>\n    </option>\n  </component>\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision 1f053494d1cfbe8a00842552c8b34c48e0018fbb)
++++ b/.idea/workspace.xml	(date 1764530128668)
+@@ -17,13 +17,229 @@
+   </component>
+   <component name="ChangeListManager">
+     <list default="true" id="193d9b95-0f51-44ef-beb1-de87a45071f7" name="Changes" comment="Add a pointer to the logout button">
++      <change beforePath="$PROJECT_DIR$/.gradle/8.13/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.13/executionHistory/executionHistory.bin" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.gradle/8.13/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.13/executionHistory/executionHistory.lock" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.gradle/8.13/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.13/fileHashes/fileHashes.bin" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.gradle/8.13/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.13/fileHashes/fileHashes.lock" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.gradle/8.13/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.13/fileHashes/resourceHashesCache.bin" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/caches/deviceStreaming.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/deviceStreaming.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/myapplication/ui/theme/adminDashb/bookARoom/BookRoom.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/myapplication/ui/theme/adminDashb/bookARoom/BookRoom.kt" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/myapplication/ui/theme/adminDashb/bookARoom/RoomBooked.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/myapplication/ui/theme/adminDashb/bookARoom/RoomBooked.kt" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/myapplication/ui/theme/adminDashb/inbox/AdminInbox.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/myapplication/ui/theme/adminDashb/inbox/AdminInbox.kt" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/myapplication/ui/theme/proctorDashb/availability/SetAvailability.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/myapplication/ui/theme/proctorDashb/availability/SetAvailability.kt" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/myapplication/ui/theme/proctorDashb/availability/ViewSchedule.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/myapplication/ui/theme/proctorDashb/availability/ViewSchedule.kt" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/myapplication/ui/theme/proctorDashb/inbox/InboxPage.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/myapplication/ui/theme/proctorDashb/inbox/InboxPage.kt" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle.kts" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/intermediates/compile_and_runtime_not_namespaced_r_class_jar/debug/processDebugResources/R.jar" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/compile_and_runtime_not_namespaced_r_class_jar/debug/processDebugResources/R.jar" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/debug/mergeDebugResources/compile-file-map.properties" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental/debug/mergeDebugResources/compile-file-map.properties" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/debug/mergeDebugResources/merger.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental/debug/mergeDebugResources/merger.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/debug/packageDebugResources/compile-file-map.properties" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental/debug/packageDebugResources/compile-file-map.properties" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/debug/packageDebugResources/merger.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental/debug/packageDebugResources/merger.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugAssets/merger.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugAssets/merger.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugJniLibFolders/merger.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugJniLibFolders/merger.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugShaders/merger.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugShaders/merger.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/intermediates/linked_resources_binary_format/debug/processDebugResources/linked-resources-binary-format-debug.ap_" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/linked_resources_binary_format/debug/processDebugResources/linked-resources-binary-format-debug.ap_" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/intermediates/local_only_symbol_list/debug/parseDebugLocalResources/R-def.txt" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/local_only_symbol_list/debug/parseDebugLocalResources/R-def.txt" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/intermediates/manifest_merge_blame_file/debug/processDebugMainManifest/manifest-merger-blame-debug-report.txt" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/manifest_merge_blame_file/debug/processDebugMainManifest/manifest-merger-blame-debug-report.txt" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_manifest/debug/processDebugMainManifest/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_manifest/debug/processDebugMainManifest/AndroidManifest.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_manifests/debug/processDebugManifest/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_manifests/debug/processDebugManifest/AndroidManifest.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/mergeDebugResources.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/mergeDebugResources.json" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-af.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-af.json" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-am.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-am.json" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-ar.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-ar.json" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-as.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-as.json" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-az.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-az.json" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-b+sr+Latn.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-b+sr+Latn.json" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-be.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-be.json" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-bg.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-bg.json" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-bn.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-bn.json" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-bs.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-bs.json" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-ca.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-ca.json" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-cs.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-cs.json" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-da.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-da.json" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-de.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-de.json" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-el.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-el.json" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-en-rAU.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-en-rAU.json" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-en-rCA.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-en-rCA.json" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-en-rGB.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-en-rGB.json" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-en-rIN.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-en-rIN.json" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-en-rXC.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-en-rXC.json" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-es-rUS.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-es-rUS.json" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-es.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-es.json" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-et.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-et.json" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-eu.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-eu.json" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-fa.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-fa.json" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-fi.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-fi.json" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-fr-rCA.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-fr-rCA.json" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-fr.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-fr.json" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-gl.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-gl.json" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-gu.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-gu.json" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-hi.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-hi.json" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-hr.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-hr.json" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-hu.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-hu.json" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-hy.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-hy.json" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-in.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-in.json" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-is.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-is.json" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-it.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-it.json" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-iw.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-iw.json" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-ja.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-ja.json" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-ka.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-ka.json" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-kk.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-kk.json" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-km.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-km.json" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-kn.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-kn.json" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-ko.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-ko.json" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-ky.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-ky.json" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-lo.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-lo.json" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-lt.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-lt.json" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-lv.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-lv.json" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-mk.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-mk.json" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-ml.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-ml.json" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-mn.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-mn.json" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-mr.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-mr.json" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-ms.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-ms.json" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-my.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-my.json" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-nb.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-nb.json" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-ne.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-ne.json" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-nl.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-nl.json" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-or.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-or.json" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-pa.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-pa.json" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-pl.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-pl.json" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-pt-rBR.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-pt-rBR.json" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-pt-rPT.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-pt-rPT.json" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-pt.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-pt.json" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-ro.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-ro.json" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-ru.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-ru.json" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-si.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-si.json" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-sk.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-sk.json" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-sl.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-sl.json" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-sq.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-sq.json" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-sr.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-sr.json" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-sv.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-sv.json" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-sw.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-sw.json" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-ta.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-ta.json" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-te.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-te.json" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-th.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-th.json" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-tl.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-tl.json" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-tr.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-tr.json" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-uk.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-uk.json" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-ur.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-ur.json" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-uz.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-uz.json" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-v21.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-v21.json" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-v30.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-v30.json" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-vi.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-vi.json" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-zh-rCN.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-zh-rCN.json" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-zh-rHK.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-zh-rHK.json" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-zh-rTW.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-zh-rTW.json" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-zu.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values-zu.json" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/multi-v2/values.json" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/single/mergeDebugResources.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_res_blame_folder/debug/mergeDebugResources/out/single/mergeDebugResources.json" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/intermediates/packaged_manifests/debug/processDebugManifestForPackage/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/packaged_manifests/debug/processDebugManifestForPackage/AndroidManifest.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/intermediates/runtime_symbol_list/debug/processDebugResources/R.txt" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/runtime_symbol_list/debug/processDebugResources/R.txt" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/intermediates/source_set_path_map/debug/mapDebugSourceSetPaths/file-map.txt" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/source_set_path_map/debug/mapDebugSourceSetPaths/file-map.txt" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/intermediates/stable_resource_ids_file/debug/processDebugResources/stableIds.txt" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/stable_resource_ids_file/debug/processDebugResources/stableIds.txt" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/intermediates/symbol_list_with_package_name/debug/processDebugResources/package-aware-r.txt" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/symbol_list_with_package_name/debug/processDebugResources/package-aware-r.txt" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/inputs/source-to-output.tab" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/inputs/source-to-output.tab.keystream" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/inputs/source-to-output.tab.keystream.len" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/inputs/source-to-output.tab.len" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/inputs/source-to-output.tab.values.at" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/inputs/source-to-output.tab_i" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/inputs/source-to-output.tab_i.len" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/class-attributes.tab" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/class-attributes.tab.keystream" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/class-attributes.tab.keystream.len" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/class-attributes.tab.len" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/class-attributes.tab.values.at" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/class-attributes.tab_i" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/class-attributes.tab_i.len" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/class-fq-name-to-source.tab" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/class-fq-name-to-source.tab.keystream" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/class-fq-name-to-source.tab.keystream.len" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/class-fq-name-to-source.tab.len" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/class-fq-name-to-source.tab.values.at" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/class-fq-name-to-source.tab_i" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/class-fq-name-to-source.tab_i.len" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/internal-name-to-source.tab" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/internal-name-to-source.tab.keystream" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/internal-name-to-source.tab.keystream.len" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/internal-name-to-source.tab.len" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/internal-name-to-source.tab.values.at" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/internal-name-to-source.tab_i" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/internal-name-to-source.tab_i.len" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/package-parts.tab" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/package-parts.tab.keystream" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/package-parts.tab.keystream.len" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/package-parts.tab.len" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/package-parts.tab.values.at" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/package-parts.tab_i" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/package-parts.tab_i.len" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/proto.tab" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/proto.tab.keystream" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/proto.tab.keystream.len" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/proto.tab.len" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/proto.tab.values.at" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/proto.tab_i" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/proto.tab_i.len" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/source-to-classes.tab" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/source-to-classes.tab.keystream" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/source-to-classes.tab.keystream.len" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/source-to-classes.tab.len" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/source-to-classes.tab.values.at" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/source-to-classes.tab_i" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/source-to-classes.tab_i.len" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/subtypes.tab" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/subtypes.tab.keystream" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/subtypes.tab.keystream.len" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/subtypes.tab.len" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/subtypes.tab.values.at" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/subtypes.tab_i" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/subtypes.tab_i.len" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/supertypes.tab" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/supertypes.tab.keystream" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/supertypes.tab.keystream.len" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/supertypes.tab.len" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/supertypes.tab.values.at" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/supertypes.tab_i" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/supertypes.tab_i.len" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/counters.tab" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/file-to-id.tab" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/file-to-id.tab.keystream" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/file-to-id.tab.keystream.len" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/file-to-id.tab.len" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/file-to-id.tab.values.at" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/file-to-id.tab_i" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/file-to-id.tab_i.len" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/id-to-file.tab" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/id-to-file.tab.keystream" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/id-to-file.tab.keystream.len" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/id-to-file.tab.len" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/id-to-file.tab.values.at" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/id-to-file.tab_i" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/id-to-file.tab_i.len" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/lookups.tab" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/lookups.tab.keystream" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/lookups.tab.keystream.len" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/lookups.tab.len" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/lookups.tab.values.at" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/lookups.tab_i" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/lookups.tab_i.len" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/cacheable/last-build.bin" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/classpath-snapshot/shrunk-classpath-snapshot.bin" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/local-state/build-history.bin" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/local-state/build-history.bin" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/outputs/logs/manifest-merger-debug-report.txt" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/outputs/logs/manifest-merger-debug-report.txt" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/tmp/kotlin-classes/debug/META-INF/app_debug.kotlin_module" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/tmp/kotlin-classes/debug/com/example/myapplication/ComposableSingletons$MainActivityKt$lambda-1$1.class" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/tmp/kotlin-classes/debug/com/example/myapplication/ComposableSingletons$MainActivityKt$lambda-2$1.class" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/tmp/kotlin-classes/debug/com/example/myapplication/ComposableSingletons$MainActivityKt.class" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/tmp/kotlin-classes/debug/com/example/myapplication/MainActivity.class" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/tmp/kotlin-classes/debug/com/example/myapplication/MainActivityKt.class" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/tmp/kotlin-classes/debug/com/example/myapplication/ui/theme/ColorKt.class" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/tmp/kotlin-classes/debug/com/example/myapplication/ui/theme/ThemeKt.class" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build/tmp/kotlin-classes/debug/com/example/myapplication/ui/theme/TypeKt.class" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/myapplication/ui/theme/NavGraph.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/myapplication/ui/theme/NavGraph.kt" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/myapplication/ui/theme/professorDashb/inbox/ChatScreen.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/myapplication/ui/theme/professorDashb/inbox/ChatScreen.kt" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/myapplication/ui/theme/professorDashb/inbox/Maininboxlayout.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/myapplication/ui/theme/professorDashb/inbox/Maininboxlayout.kt" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/myapplication/ui/theme/professorDashb/inbox/data/MessagingRepository.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/myapplication/ui/theme/professorDashb/inbox/data/MessagingRepository.kt" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/local.properties" beforeDir="false" afterPath="$PROJECT_DIR$/local.properties" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -78,22 +294,22 @@
+     &quot;assignee&quot;: &quot;heshnaB&quot;
+   }
+ }</component>
+-  <component name="GithubPullRequestsUISettings"><![CDATA[{
+-  "selectedUrlAndAccountId": {
+-    "url": "https://github.com/heshnaB/f25_byte_bond.git",
+-    "accountId": "7e8b673a-fe5d-4432-9af0-c3b55fcf60b8"
++  <component name="GithubPullRequestsUISettings">{
++  &quot;selectedUrlAndAccountId&quot;: {
++    &quot;url&quot;: &quot;https://github.com/heshnaB/f25_byte_bond.git&quot;,
++    &quot;accountId&quot;: &quot;7e8b673a-fe5d-4432-9af0-c3b55fcf60b8&quot;
+   },
+-  "recentNewPullRequestHead": {
+-    "server": {
+-      "useHttp": false,
+-      "host": "github.com",
+-      "port": null,
+-      "suffix": null
++  &quot;recentNewPullRequestHead&quot;: {
++    &quot;server&quot;: {
++      &quot;useHttp&quot;: false,
++      &quot;host&quot;: &quot;github.com&quot;,
++      &quot;port&quot;: null,
++      &quot;suffix&quot;: null
+     },
+-    "owner": "Yolomasterful",
+-    "repository": "f25_byte_bond"
++    &quot;owner&quot;: &quot;Yolomasterful&quot;,
++    &quot;repository&quot;: &quot;f25_byte_bond&quot;
+   }
+-}]]></component>
++}</component>
+   <component name="ProblemsViewState">
+     <option name="selectedTabId" value="CurrentFile" />
+   </component>
+@@ -119,6 +335,7 @@
+     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+     "cf.first.check.clang-format": "false",
+     "cidr.known.project.marker": "true",
++    "com.google.services.firebase.aqiPopupShown": "true",
+     "git-widget-placeholder": "heshna2",
+     "last_opened_file_path": "/home/heshna/AndroidStudioProjects/f25_byte_bond/app/src/main/res/drawable",
+     "settings.editor.selected.configurable": "reference.settingsdialog.project.gradle",
+Index: app/src/main/java/com/example/myapplication/ui/theme/professorDashb/inbox/data/MessagingRepository.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.myapplication.ui.theme.professorDashb.inbox.data\n\nimport com.google.firebase.firestore.FirebaseFirestore\nimport kotlinx.coroutines.tasks.await\nimport com.google.firebase.firestore.ktx.toObjects\n\n\n// Firstly we must define what a message is and we can do that by\n// setting it as data.\ndata class Message(\n    val text: String = \"\",\n    val senderId: String = \"\",\n    val timestamp: Long = 0L\n)\n\nclass MessagingRepository(\n    private val firestore: FirebaseFirestore = FirebaseFirestore.getInstance()\n\n) {\n    fun listenForMessages(\n        conversationId: String,\n        onMessages: (List<Message>) -> Unit) {\n        firestore.collection(\"messages\")\n            .document(conversationId)\n            .collection(\"chat\")\n            .orderBy(\"timestamp\")\n            .addSnapshotListener { snapshot, _ ->\n                if (snapshot != null) {\n                    val list = snapshot.toObjects(Message::class.java)\n                    onMessages(list)\n                }\n            }\n    }\n\n    suspend fun sendMessage(conversationId: String, message: Message) {\n        firestore.collection(\"messages\")\n            .document(conversationId)\n            .collection(\"chat\")\n            .add(message)\n            .await()\n    }\n}
+===================================================================
+diff --git a/app/src/main/java/com/example/myapplication/ui/theme/professorDashb/inbox/data/MessagingRepository.kt b/app/src/main/java/com/example/myapplication/ui/theme/professorDashb/inbox/data/MessagingRepository.kt
+--- a/app/src/main/java/com/example/myapplication/ui/theme/professorDashb/inbox/data/MessagingRepository.kt	(revision 1f053494d1cfbe8a00842552c8b34c48e0018fbb)
++++ b/app/src/main/java/com/example/myapplication/ui/theme/professorDashb/inbox/data/MessagingRepository.kt	(date 1764530060282)
+@@ -1,42 +1,48 @@
+ package com.example.myapplication.ui.theme.professorDashb.inbox.data
+ 
+-import com.google.firebase.firestore.FirebaseFirestore
+-import kotlinx.coroutines.tasks.await
+-import com.google.firebase.firestore.ktx.toObjects
+-
+-
+-// Firstly we must define what a message is and we can do that by
+-// setting it as data.
+-data class Message(
+-    val text: String = "",
+-    val senderId: String = "",
+-    val timestamp: Long = 0L
+-)
+-
+-class MessagingRepository(
+-    private val firestore: FirebaseFirestore = FirebaseFirestore.getInstance()
+-
+-) {
+-    fun listenForMessages(
+-        conversationId: String,
+-        onMessages: (List<Message>) -> Unit) {
+-        firestore.collection("messages")
+-            .document(conversationId)
+-            .collection("chat")
+-            .orderBy("timestamp")
+-            .addSnapshotListener { snapshot, _ ->
+-                if (snapshot != null) {
+-                    val list = snapshot.toObjects(Message::class.java)
+-                    onMessages(list)
+-                }
+-            }
+-    }
+-
+-    suspend fun sendMessage(conversationId: String, message: Message) {
+-        firestore.collection("messages")
+-            .document(conversationId)
+-            .collection("chat")
+-            .add(message)
+-            .await()
+-    }
+-}
+\ No newline at end of file
++//import com.google.firebase.firestore.FirebaseFirestore
++//import com.google.firebase.firestore.ktx.firestore
++//import com.google.firebase.firestore.ktx.toObjects
++//import kotlinx.coroutines.tasks.await
++//
++//
++//
++//
++//// Firstly we must define what a message is and we can do that by
++//// setting it as data.
++//data class Message(
++//    val text: String = "",
++//    val senderId: String = "",
++//    val timestamp: Long = 0L
++//)
++//
++//class MessagingRepository(
++//    private val firestore: FirebaseFirestore = FirebaseFirestore.getInstance()
++//
++//) {
++//    fun listenForMessages(
++//        conversationId: String,
++//        onMessages: (List<Message>) -> Unit) {
++//        firestore.collection("messages")
++//            .document(conversationId)
++//            .collection("chat")
++//            .orderBy("timestamp")
++//            .addSnapshotListener { snapshot, error ->
++//                if (error != null) {
++//                    return@addSnapshotListener
++//                }
++//                if (snapshot != null) {
++//                    val list = snapshot.toObjects(Message::class.java)
++//                    onMessages(list)
++//                }
++//            }
++//    }
++//
++//    suspend fun sendMessage(conversationId: String, message: Message) {
++//        firestore.collection("messages")
++//            .document(conversationId)
++//            .collection("chat")
++//            .add(message)
++//            .await()
++//    }
++//}
+\ No newline at end of file
+Index: app/src/main/java/com/example/myapplication/ui/theme/professorDashb/inbox/ChatScreen.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.myapplication.ui.theme.professorDashb.inbox\n\nimport androidx.compose.foundation.layout.Column\nimport androidx.compose.runtime.LaunchedEffect\nimport androidx.compose.runtime.mutableStateOf\nimport androidx.compose.runtime.remember\nimport com.example.myapplication.ui.theme.professorDashb.inbox.data.MessagingRepository\nimport androidx.compose.runtime.*\nimport androidx.compose.foundation.layout.*\nimport androidx.compose.material3.*\nimport androidx.compose.foundation.lazy.LazyColumn\nimport androidx.compose.foundation.lazy.items\nimport androidx.compose.ui.Modifier\nimport androidx.compose.ui.text.font.FontVariation.width\nimport androidx.compose.ui.unit.dp\nimport com.example.myapplication.ui.theme.professorDashb.inbox.data.Message\nimport kotlinx.coroutines.*\n\n@Composable\nfun ChatScreen(\n    conversationId: String,\n    repository: MessagingRepository = MessagingRepository()\n) {\n    var messages by remember { mutableStateOf(listOf<Message>())}\n    var input by remember { mutableStateOf(\"\") }\n\n    LaunchedEffect(Unit) {\n        repository.listenforMessages(conversationId) { list: List<Message> ->\n            messages = list\n        }\n    }\n\n    Column(modifier = Modifier.fillMaxSize()) {\n        LazyColumn(\n            modifier = Modifier\n                .weight(1f)\n                .padding(2.dp)\n        ) {\n            items(messages) { msg ->\n                Text(\"${msg.senderId}: ${msg.text}\")\n                Spacer(modifier = Modifier.height(8.dp))\n            }\n        }\n\n        Row(modifier = Modifier.padding(2.dp)) {\n            TextField(\n                value = input,\n                onValueChange = { input = it},\n                modifier = Modifier.weight(1f)\n            )\n\n            Spacer(modifier = width(1f) as Modifier)\n\n            Button(onClick = {\n                val m = Message(\n                    text = input,\n                    senderId = \"Professor X\",\n                    timestamp = System.currentTimeMillis()\n                )\n                input = \"\"\n\n                CoroutineScope(Dispatchers.IO).launch {\n                    repository.sendMessage(conversationId, m)\n                }\n            }) {\n                Text(\"Send\")\n            }\n        }\n    }\n}\n\nprivate fun MessagingRepository.listenforMessages(\n    conversationId: String,\n    function: Any\n) {\n}\n
+===================================================================
+diff --git a/app/src/main/java/com/example/myapplication/ui/theme/professorDashb/inbox/ChatScreen.kt b/app/src/main/java/com/example/myapplication/ui/theme/professorDashb/inbox/ChatScreen.kt
+--- a/app/src/main/java/com/example/myapplication/ui/theme/professorDashb/inbox/ChatScreen.kt	(revision 1f053494d1cfbe8a00842552c8b34c48e0018fbb)
++++ b/app/src/main/java/com/example/myapplication/ui/theme/professorDashb/inbox/ChatScreen.kt	(date 1764530124589)
+@@ -1,76 +1,76 @@
+ package com.example.myapplication.ui.theme.professorDashb.inbox
+ 
+-import androidx.compose.foundation.layout.Column
+-import androidx.compose.runtime.LaunchedEffect
+-import androidx.compose.runtime.mutableStateOf
+-import androidx.compose.runtime.remember
+-import com.example.myapplication.ui.theme.professorDashb.inbox.data.MessagingRepository
+-import androidx.compose.runtime.*
+-import androidx.compose.foundation.layout.*
+-import androidx.compose.material3.*
+-import androidx.compose.foundation.lazy.LazyColumn
+-import androidx.compose.foundation.lazy.items
+-import androidx.compose.ui.Modifier
+-import androidx.compose.ui.text.font.FontVariation.width
+-import androidx.compose.ui.unit.dp
+-import com.example.myapplication.ui.theme.professorDashb.inbox.data.Message
+-import kotlinx.coroutines.*
+-
+-@Composable
+-fun ChatScreen(
+-    conversationId: String,
+-    repository: MessagingRepository = MessagingRepository()
+-) {
+-    var messages by remember { mutableStateOf(listOf<Message>())}
+-    var input by remember { mutableStateOf("") }
+-
+-    LaunchedEffect(Unit) {
+-        repository.listenforMessages(conversationId) { list: List<Message> ->
+-            messages = list
+-        }
+-    }
+-
+-    Column(modifier = Modifier.fillMaxSize()) {
+-        LazyColumn(
+-            modifier = Modifier
+-                .weight(1f)
+-                .padding(2.dp)
+-        ) {
+-            items(messages) { msg ->
+-                Text("${msg.senderId}: ${msg.text}")
+-                Spacer(modifier = Modifier.height(8.dp))
+-            }
+-        }
+-
+-        Row(modifier = Modifier.padding(2.dp)) {
+-            TextField(
+-                value = input,
+-                onValueChange = { input = it},
+-                modifier = Modifier.weight(1f)
+-            )
+-
+-            Spacer(modifier = width(1f) as Modifier)
+-
+-            Button(onClick = {
+-                val m = Message(
+-                    text = input,
+-                    senderId = "Professor X",
+-                    timestamp = System.currentTimeMillis()
+-                )
+-                input = ""
+-
+-                CoroutineScope(Dispatchers.IO).launch {
+-                    repository.sendMessage(conversationId, m)
+-                }
+-            }) {
+-                Text("Send")
+-            }
+-        }
+-    }
+-}
+-
+-private fun MessagingRepository.listenforMessages(
+-    conversationId: String,
+-    function: Any
+-) {
+-}
++//import androidx.compose.foundation.layout.Column
++//import androidx.compose.runtime.LaunchedEffect
++//import androidx.compose.runtime.mutableStateOf
++//import androidx.compose.runtime.remember
++//import com.example.myapplication.ui.theme.professorDashb.inbox.data.MessagingRepository
++//import androidx.compose.runtime.*
++//import androidx.compose.foundation.layout.*
++//import androidx.compose.material3.*
++//import androidx.compose.foundation.lazy.LazyColumn
++//import androidx.compose.foundation.lazy.items
++//import androidx.compose.ui.Modifier
++//import androidx.compose.ui.text.font.FontVariation.width
++//import androidx.compose.ui.unit.dp
++//import com.example.myapplication.ui.theme.professorDashb.inbox.data.Message
++//import kotlinx.coroutines.*
++//
++//@Composable
++//fun ChatScreen(
++//    conversationId: String,
++////    repository: MessagingRepository = MessagingRepository()
++//) {
++////    var messages by remember { mutableStateOf(listOf<Message>())}
++//    var input by remember { mutableStateOf("") }
++//
++////    LaunchedEffect(Unit) {
++////        repository.listenforMessages(conversationId) { list: List<Message> ->
++////            messages = list
++////        }
++////    }
++//
++//    Column(modifier = Modifier.fillMaxSize()) {
++//        LazyColumn(
++//            modifier = Modifier
++//                .weight(1f)
++//                .padding(2.dp)
++//        ) {
++//            items(messages) { msg ->
++//                Text("${msg.senderId}: ${msg.text}")
++//                Spacer(modifier = Modifier.height(8.dp))
++//            }
++//        }
++//
++//        Row(modifier = Modifier.padding(2.dp)) {
++//            TextField(
++//                value = input,
++//                onValueChange = { input = it},
++//                modifier = Modifier.weight(1f)
++//            )
++//
++//            Spacer(modifier = width(1f) as Modifier)
++//
++//            Button(onClick = {
++//                val m = Message(
++//                    text = input,
++//                    senderId = "Professor X",
++//                    timestamp = System.currentTimeMillis()
++//                )
++//                input = ""
++//
++//                CoroutineScope(Dispatchers.IO).launch {
++//                    repository.sendMessage(conversationId, m)
++//                }
++//            }) {
++//                Text("Send")
++//            }
++//        }
++//    }
++//}
++//
++//private fun MessagingRepository.listenforMessages(
++//    conversationId: String,
++//    function: Any
++//) {
++//}
+Index: app/src/main/java/com/example/myapplication/ui/theme/professorDashb/inbox/Maininboxlayout.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.myapplication.ui.theme.professorDashb.inbox\n\nimport androidx.compose.foundation.background\nimport androidx.compose.foundation.layout.Box\nimport androidx.compose.foundation.layout.Column\nimport androidx.compose.foundation.layout.Spacer\nimport androidx.compose.foundation.layout.fillMaxWidth\nimport androidx.compose.foundation.layout.height\nimport androidx.compose.foundation.layout.padding\nimport androidx.compose.foundation.shape.RoundedCornerShape\nimport androidx.compose.material3.MaterialTheme\n\nimport androidx.compose.material3.PrimaryTabRow\nimport androidx.compose.material3.Tab\nimport androidx.compose.material3.Text\n\nimport androidx.compose.runtime.Composable\nimport androidx.compose.runtime.LaunchedEffect\nimport androidx.compose.runtime.mutableStateOf\nimport androidx.compose.runtime.remember\nimport androidx.compose.runtime.setValue\nimport androidx.compose.runtime.getValue\nimport androidx.compose.ui.Modifier\nimport androidx.compose.ui.graphics.Color\nimport androidx.compose.ui.unit.dp\nimport com.example.myapplication.ui.theme.professorDashb.inbox.data.Message\nimport com.example.myapplication.ui.theme.professorDashb.inbox.data.MessagingRepository\nimport com.example.myapplication.ui.theme.whiteBox\n\n@Composable\nfun MessageRequestsTabs() {\n    var selectedTab by remember { mutableStateOf(0) }\n    val tabs = listOf(\"Messages\", \"Requests\")\n\n    Box(\n        modifier = Modifier\n            .fillMaxWidth()\n            .padding(16.dp)\n            .background(\n                color = MaterialTheme.colorScheme.surface,\n                shape = RoundedCornerShape(1.dp)\n            )\n    ) {\n\n    Column {\n        PrimaryTabRow(\n            selectedTabIndex = selectedTab,\n            containerColor = MaterialTheme.colorScheme.surface,\n            divider = {},\n            indicator = {}\n            ) {\n            tabs.forEachIndexed { index, title ->\n                val isSelected = selectedTab == index\n                Tab(\n                    selected = isSelected,\n                    onClick = { selectedTab = index },\n                    modifier = Modifier\n                        .padding(vertical = 4.dp)\n                        .background(\n                            if (isSelected) MaterialTheme.colorScheme.onSurface.copy(alpha=0.08f)\n                            else Color.Transparent,\n                            shape = RoundedCornerShape(8.dp)\n                        ),\n                    text = {\n                        Text(\n                            text = title,\n                            color = Color.Black,\n                        )\n                    }\n                )\n            }\n        }\n\n        Spacer(modifier = Modifier.height(16.dp))\n\n        when (selectedTab) {\n            0 -> MessagesTab()\n            1 -> RequestsTab()\n        }\n    }}\n}\n\n@Composable\nfun MessagesTab() {\n\n    Column(modifier = Modifier.padding(16.dp)) {\n    whiteBox{\n        Text(\"Message #1\")\n    }\n\n    }\n}\n\n@Composable\nfun RequestsTab() {\n    Column(modifier = Modifier.padding(16.dp)) {\n        whiteBox{\n            Text(\"Request #1\")\n        }\n\n    }\n}\n\n\n\n\n
+===================================================================
+diff --git a/app/src/main/java/com/example/myapplication/ui/theme/professorDashb/inbox/Maininboxlayout.kt b/app/src/main/java/com/example/myapplication/ui/theme/professorDashb/inbox/Maininboxlayout.kt
+--- a/app/src/main/java/com/example/myapplication/ui/theme/professorDashb/inbox/Maininboxlayout.kt	(revision 1f053494d1cfbe8a00842552c8b34c48e0018fbb)
++++ b/app/src/main/java/com/example/myapplication/ui/theme/professorDashb/inbox/Maininboxlayout.kt	(date 1764530124581)
+@@ -23,8 +23,8 @@
+ import androidx.compose.ui.Modifier
+ import androidx.compose.ui.graphics.Color
+ import androidx.compose.ui.unit.dp
+-import com.example.myapplication.ui.theme.professorDashb.inbox.data.Message
+-import com.example.myapplication.ui.theme.professorDashb.inbox.data.MessagingRepository
++//import com.example.myapplication.ui.theme.professorDashb.inbox.data.Message
++//import com.example.myapplication.ui.theme.professorDashb.inbox.data.MessagingRepository
+ import com.example.myapplication.ui.theme.whiteBox
+ 
+ @Composable

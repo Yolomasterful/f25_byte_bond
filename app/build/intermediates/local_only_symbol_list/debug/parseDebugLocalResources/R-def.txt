@@ -10,7 +10,9 @@ color white
 drawable home_fill
 drawable ic_launcher_background
 drawable ic_launcher_foreground
+drawable importimage
 drawable mode_edit
+drawable searchicon
 drawable send_button
 mipmap backarrow
 mipmap ic_launcher
