@@ -26,10 +26,7 @@ fun Messages(navController: NavHostController) {
 
     ){
         Spacer(modifier = Modifier.height(20.dp))
-        MessageRequestsTabs(
-
-
-        )
+        MessageRequestsTabs(navController = navController)
 
     }
 }

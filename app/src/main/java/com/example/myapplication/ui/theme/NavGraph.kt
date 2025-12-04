@@ -73,8 +73,9 @@ fun AppNavHost(
             StatusViewerScreen(navController)
         }
 
-        composable("ExamDetailScreen") {
-            ExamDetailScreen(navController)
+        composable("ExamDetailScreen/{requestId}") { backStackEntry ->
+            val requestId = backStackEntry.arguments?.getString("requestId")
+            ExamDetailScreen(navController, requestId)
         }
 
         composable("ExamDeferralForm") {
@@ -112,6 +113,11 @@ fun AppNavHost(
             UploadExam(navController)
         }
 
+        // Professor views deferral request details (reusing student's ExamDetailScreen)
+        composable("ProfessorRequestDetail/{requestId}") { backStackEntry ->
+            val requestId = backStackEntry.arguments?.getString("requestId")
+            ExamDetailScreen(navController, requestId)
+        }
 
         /** ───────────────────────────────
          *  5. Proctor Screen
@@ -127,7 +133,6 @@ fun AppNavHost(
         composable("SetAvailability") {
             SetAvailability(navController)
         }
-
 
         composable("AdminInbox") {
             AdminInbox(navController)
@@ -151,9 +156,5 @@ fun AppNavHost(
         composable("RoomBooked") {
             RoomBooked(navController)
         }
-
-
-
-
     }
 }
