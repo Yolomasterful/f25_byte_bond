@@ -17,7 +17,7 @@ fun ViewSchedule(navController: NavHostController) {
     MainLayout(
         navController = navController,
         pageName = "My Availability",
-        onBackClick = { navController.navigate("dashboard_professor")}
+        onBackClick = { navController.navigate("dashboard_proctor")}
 
     ){
         Column(
