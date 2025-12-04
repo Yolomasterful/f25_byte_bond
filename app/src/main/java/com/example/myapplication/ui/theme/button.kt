@@ -39,6 +39,7 @@ import androidx.compose.material3.TextFieldDefaults
 fun backArrow(
     navController: NavHostController,
     modifier: Modifier = Modifier,
+    onBackClick: (() -> Unit)? = null,
 
 ) {
     Box (
@@ -47,7 +48,11 @@ fun backArrow(
             .height(28.dp)
     ) {
         Button(
-            onClick = { navController.popBackStack() },
+            onClick = {
+                onBackClick?.invoke()
+                    ?: navController.popBackStack()
+//                navController.popBackStack()
+                      },
             modifier = Modifier
                 .width(93.dp)
                 .height(28.dp)
