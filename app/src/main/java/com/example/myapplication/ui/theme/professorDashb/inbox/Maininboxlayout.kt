@@ -7,7 +7,9 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 
 import androidx.compose.material3.PrimaryTabRow
@@ -23,12 +25,18 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavHostController
+//import com.example.myapplication.ui.theme.uSubTitle
+import com.example.myapplication.ui.theme.uTypetext
 //import com.example.myapplication.ui.theme.professorDashb.inbox.data.Message
 //import com.example.myapplication.ui.theme.professorDashb.inbox.data.MessagingRepository
 import com.example.myapplication.ui.theme.whiteBox
 
 @Composable
-fun MessageRequestsTabs() {
+fun MessageRequestsTabs(
+    defaultTab: Int = 0,
+    navController: NavHostController
+) {
     var selectedTab by remember { mutableStateOf(0) }
     val tabs = listOf("Messages", "Requests")
 
@@ -75,7 +83,7 @@ fun MessageRequestsTabs() {
 
         when (selectedTab) {
             0 -> MessagesTab()
-            1 -> RequestsTab()
+            1 -> RequestsTab(navController)
         }
     }}
 }
@@ -92,11 +100,34 @@ fun MessagesTab() {
 }
 
 @Composable
-fun RequestsTab() {
+fun RequestsTab(navController: NavHostController) {
     Column(modifier = Modifier.padding(16.dp)) {
-        whiteBox{
-            Text("Request #1")
+        whiteBox {
+            Column(modifier = Modifier.fillMaxWidth()) {
+                Text("Accepted Requests")
+                Spacer(modifier = Modifier.height(16.dp))
+                Button(
+                    shape = RoundedCornerShape(10.dp),
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(70.dp),
+                    onClick = {
+                        navController.navigate("ChoiceDetails")
+                    },
+                ) {
+                    Text(
+                        text = "Accepted request example",
+                    )
+                }
+            }
         }
+            Spacer(modifier = Modifier.height(20.dp))
+            whiteBox{
+                Column(modifier = Modifier.fillMaxWidth()) {
+                Text("Denied Requests")
+                }
+            }
+
 
     }
 }

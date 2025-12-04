@@ -68,16 +68,14 @@ val Typography.uTitletext: TextStyle
     */
 
 
-@Composable
-fun uSubTitle(text: String) {
-    Text(
-        text = text,
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(bottom = 40.dp),
-        fontSize = 32.sp,
-        textAlign = TextAlign.Center
 
-    )
-}
+//val Typography.uSubTitle: TextSyle
+//    @Composable
+//    get() = TextStyle(
+//        fontSize = 32.sp,
+//        textAlign = TextAlign.Center,
+//        color = MaterialTheme.colorScheme.onPrimary
+//
+//    )
+
 

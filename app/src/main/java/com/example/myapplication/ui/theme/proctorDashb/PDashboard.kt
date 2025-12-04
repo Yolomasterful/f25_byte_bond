@@ -59,7 +59,7 @@ fun PDashboard(navController: NavHostController) {
 
             Spacer(modifier = Modifier.height(60.dp))
             Button(
-                onClick = {},
+                onClick = {navController.navigate("ViewSchedule")},
                 shape = RoundedCornerShape(10.dp),
                 colors = ButtonDefaults.buttonColors(
                     containerColor = MaterialTheme.colorScheme.surface

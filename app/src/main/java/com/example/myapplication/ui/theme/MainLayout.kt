@@ -18,6 +18,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.shape.RoundedCornerShape
 
@@ -26,8 +27,10 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 fun MainLayout(
     navController: NavHostController,
     pageName: String = "",
+    showBackArrow: Boolean = true,
+    onBackClick: (() -> Unit)? = null,
 
-    content: @Composable () -> Unit
+    content: @Composable ColumnScope.() -> Unit
 ) {
     Scaffold(
         content = { innerPadding ->
@@ -51,10 +54,11 @@ fun MainLayout(
                     textAlign = TextAlign.Center
                 )
                 Spacer(modifier = Modifier.height(30.dp))
-                backArrow(
-                    navController = navController,
-                    modifier = Modifier
-                )
+                if (showBackArrow) {
+                    backArrow(
+                        navController = navController,
+                        onBackClick = onBackClick
+                )}
                 content()
 
             }

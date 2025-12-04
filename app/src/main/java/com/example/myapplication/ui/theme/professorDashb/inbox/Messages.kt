@@ -22,14 +22,12 @@ import com.example.myapplication.ui.theme.whiteBox
 fun Messages(navController: NavHostController) {
     MainLayout(
         navController = navController,
-        pageName = "Inbox"
+        pageName = "Inbox",
+
 
     ){
         Spacer(modifier = Modifier.height(20.dp))
-        MessageRequestsTabs(
-
-
-        )
+        MessageRequestsTabs(defaultTab = 0, navController)
 
     }
 }
