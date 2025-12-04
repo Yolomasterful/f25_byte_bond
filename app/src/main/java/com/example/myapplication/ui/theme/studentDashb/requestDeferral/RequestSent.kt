@@ -46,7 +46,8 @@ import com.example.myapplication.ui.theme.whiteBox
 fun RequestSent(navController: NavHostController) {
     MainLayout(
         navController = navController,
-        pageName = ""
+        pageName = "",
+        showBackArrow = false
 
     ){
         Spacer(modifier = Modifier.height(50.dp))
