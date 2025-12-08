@@ -20,7 +20,8 @@ import androidx.navigation.NavHostController
 import androidx.compose.material3.Scaffold
 import androidx.compose.foundation.layout.fillMaxSize
 //import com.example.myapplication.AppScreen
-
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 @Composable
 fun MainDashboard(
     navController: NavHostController,
@@ -32,7 +33,8 @@ fun MainDashboard(
             Column(
                 modifier = Modifier
                     .padding(innerPadding)
-                    .fillMaxSize(),
+                    .fillMaxSize()
+                    .verticalScroll(rememberScrollState()),
                 verticalArrangement = Arrangement.Top,
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {

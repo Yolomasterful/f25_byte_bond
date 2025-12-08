@@ -1,4 +1,4 @@
-package com.example.myapplication
+package com.example.myapplication.ui.theme
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -7,8 +7,6 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 
 // Your UI screens
-import com.example.myapplication.ui.theme.SelectUserType
-import com.example.myapplication.ui.theme.LoginScreen
 
 // Dashboards with correct package names
 import com.example.myapplication.ui.theme.studentDashb.SDashboard
@@ -155,6 +153,12 @@ fun AppNavHost(
 
         composable("RoomBooked") {
             RoomBooked(navController)
+        }
+
+        // Admin views approved request details
+        composable("AdminRequestDetail/{requestId}") { backStackEntry ->
+            val requestId = backStackEntry.arguments?.getString("requestId")
+            ExamDetailScreen(navController, requestId)
         }
     }
 }

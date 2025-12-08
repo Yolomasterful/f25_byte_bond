@@ -1,4 +1,4 @@
-package com.example.myapplication.ui.theme
+package com.example.myapplication.logic.notification
 
 import android.app.NotificationChannel
 import android.app.NotificationManager
@@ -28,28 +28,44 @@ class RealTimeStatusListener(private val context: Context) {
     }
 
     fun startListening() {
-        val userId = auth.currentUser?.uid ?: return
+        val userId = auth.currentUser?.uid ?: run {
+            android.util.Log.e("NotificationDebug", "No user logged in")
+            return
+        }
+
+        android.util.Log.d("NotificationDebug", "Starting listener for user: $userId")
 
         listener = firestore.collection("deferralRequests")
             .whereEqualTo("userId", userId)
             .addSnapshotListener { snapshots, error ->
-                if (error != null) return@addSnapshotListener
+                if (error != null) {
+                    android.util.Log.e("NotificationDebug", "Listener error: ${error.message}")
+                    return@addSnapshotListener
+                }
+
+                android.util.Log.d("NotificationDebug", "Snapshot received, changes: ${snapshots?.documentChanges?.size}")
 
                 snapshots?.documentChanges?.forEach { change ->
+                    android.util.Log.d("NotificationDebug", "Change type: ${change.type}")
+
                     if (change.type == com.google.firebase.firestore.DocumentChange.Type.MODIFIED) {
                         val doc = change.document
                         val status = doc.getString("status") ?: return@forEach
-                        val reviewedAt = doc.getLong("reviewedAt")
 
-                        // Only notify if recently reviewed (within last 10 seconds)
-                        if (reviewedAt != null && System.currentTimeMillis() - reviewedAt < 10000) {
-                            when (status) {
-                                "APPROVED" -> showNotification(
+                        android.util.Log.d("NotificationDebug", "Status changed to: $status for doc: ${doc.id}")
+
+                        when (status) {
+                            "APPROVED" -> {
+                                android.util.Log.d("NotificationDebug", "Showing APPROVED notification")
+                                showNotification(
                                     "Request Approved ✓",
                                     "Your deferral request for ${doc.getString("examDate")} has been approved!",
                                     doc.id
                                 )
-                                "DENIED" -> showNotification(
+                            }
+                            "DENIED" -> {
+                                android.util.Log.d("NotificationDebug", "Showing DENIED notification")
+                                showNotification(
                                     "Request Denied",
                                     "Your deferral request for ${doc.getString("examDate")} has been denied.",
                                     doc.id
@@ -80,14 +96,23 @@ class RealTimeStatusListener(private val context: Context) {
     }
 
     private fun showNotification(title: String, message: String, requestId: String) {
-        val notification = NotificationCompat.Builder(context, CHANNEL_ID)
-            .setSmallIcon(android.R.drawable.ic_dialog_info) // Replace with your app icon
-            .setContentTitle(title)
-            .setContentText(message)
-            .setPriority(NotificationCompat.PRIORITY_HIGH)
-            .setAutoCancel(true)
-            .build()
+        android.util.Log.d("NotificationDebug", "showNotification called: $title")
 
-        notificationManager.notify(NOTIFICATION_ID_BASE + requestId.hashCode(), notification)
+        try {
+            val notification = NotificationCompat.Builder(context, CHANNEL_ID)
+                .setSmallIcon(android.R.drawable.ic_dialog_info)
+                .setContentTitle(title)
+                .setContentText(message)
+                .setPriority(NotificationCompat.PRIORITY_HIGH)
+                .setAutoCancel(true)
+                .build()
+
+            val notifId = NOTIFICATION_ID_BASE + requestId.hashCode()
+            android.util.Log.d("NotificationDebug", "Showing notification with ID: $notifId")
+            notificationManager.notify(notifId, notification)
+            android.util.Log.d("NotificationDebug", "Notification shown successfully")
+        } catch (e: Exception) {
+            android.util.Log.e("NotificationDebug", "Error showing notification: ${e.message}")
+        }
     }
 }
