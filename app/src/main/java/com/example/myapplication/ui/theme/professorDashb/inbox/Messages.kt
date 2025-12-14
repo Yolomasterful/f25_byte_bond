@@ -27,7 +27,11 @@ fun Messages(navController: NavHostController) {
 
     ){
         Spacer(modifier = Modifier.height(20.dp))
+<<<<<<< HEAD
         MessageRequestsTabs(defaultTab = 0, navController)
+=======
+        MessageRequestsTabs(navController = navController)
+>>>>>>> upstream/main
 
     }
 }

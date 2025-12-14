@@ -1,4 +1,4 @@
-package com.example.myapplication
+package com.example.myapplication.ui.theme
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -7,8 +7,6 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 
 // Your UI screens
-import com.example.myapplication.ui.theme.SelectUserType
-import com.example.myapplication.ui.theme.LoginScreen
 
 // Dashboards with correct package names
 import com.example.myapplication.ui.theme.studentDashb.SDashboard
@@ -81,8 +79,9 @@ fun AppNavHost(
             StatusViewerScreen(navController)
         }
 
-        composable("ExamDetailScreen") {
-            ExamDetailScreen(navController)
+        composable("ExamDetailScreen/{requestId}") { backStackEntry ->
+            val requestId = backStackEntry.arguments?.getString("requestId")
+            ExamDetailScreen(navController, requestId)
         }
 
         composable("ExamDeferralForm") {
@@ -120,6 +119,7 @@ fun AppNavHost(
             UploadExam(navController)
         }
 
+<<<<<<< HEAD
         composable("ChoiceDetails") {
             ChoiceDetails(navController)
         }
@@ -136,6 +136,13 @@ fun AppNavHost(
             RequestsPage(navController)
         }
 
+=======
+        // Professor views deferral request details (reusing student's ExamDetailScreen)
+        composable("ProfessorRequestDetail/{requestId}") { backStackEntry ->
+            val requestId = backStackEntry.arguments?.getString("requestId")
+            ExamDetailScreen(navController, requestId)
+        }
+>>>>>>> upstream/main
 
         /** ───────────────────────────────
          *  5. Proctor Screen
@@ -152,9 +159,14 @@ fun AppNavHost(
             SetAvailability(navController)
         }
 
+<<<<<<< HEAD
 
         composable("ViewSchedule") {
             ViewSchedule(navController)
+=======
+        composable("AdminInbox") {
+            AdminInbox(navController)
+>>>>>>> upstream/main
         }
 
         /** ───────────────────────────────
@@ -176,6 +188,7 @@ fun AppNavHost(
             RoomBooked(navController)
         }
 
+<<<<<<< HEAD
         composable("ExamDeferralRooms") {
             ExamDeferralRooms(navController)
         }
@@ -191,5 +204,12 @@ fun AppNavHost(
 
 
 
+=======
+        // Admin views approved request details
+        composable("AdminRequestDetail/{requestId}") { backStackEntry ->
+            val requestId = backStackEntry.arguments?.getString("requestId")
+            ExamDetailScreen(navController, requestId)
+        }
+>>>>>>> upstream/main
     }
 }

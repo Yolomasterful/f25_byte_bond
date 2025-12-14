@@ -1,6 +1,6 @@
 # Gradle files
 .gradle/
-build/
+**/build/
 app/build/
 
 # Local configuration
@@ -20,3 +20,4 @@ Thumbs.db
 # Android Studio caches
 .navigation/
 caches/
+
