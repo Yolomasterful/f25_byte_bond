@@ -1,6 +1,6 @@
 package com.example.myapplication.ui.theme.studentDashb.deferralRequests
 
-<<<<<<< HEAD
+
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -11,7 +11,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
-=======
+import com.example.myapplication.R
+
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -19,10 +20,9 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
-import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
->>>>>>> upstream/main
+
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
@@ -30,6 +30,8 @@ import com.example.myapplication.data.firebase.DeferralRequest
 import com.example.myapplication.data.firebase.FirestoreResult
 import com.example.myapplication.data.firebase.FirestoreService
 import com.example.myapplication.ui.theme.MainLayout
+import com.example.myapplication.ui.theme.basicButton
+import com.example.myapplication.ui.theme.whiteBox
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -66,34 +68,15 @@ fun ExamDetailScreen(
 
     MainLayout(
         navController = navController,
-<<<<<<< HEAD
         pageName = "Class name",
         showBackArrow = false
 
     ){
         Spacer(modifier = Modifier.height(20.dp))
 
-        whiteBox{
-            //Insert info from data here!
-            Text("Exam details goes here",
-                modifier = Modifier
-                    .fillMaxWidth(),
-                textAlign = TextAlign.Center,
-                fontSize = 20.sp
-            )
-        }
 
-        Spacer(modifier = Modifier.height(40.dp))
+//        pageName = "Request Details"
 
-        basicButton(
-            onClick = { navController.navigate("dashboard_student") },
-            imageContent = {
-                Image(
-                    painter = painterResource(id = R.drawable.home_fill),
-                    contentDescription = "Home Button",
-=======
-        pageName = "Request Details"
-    ) {
         when {
             isLoading -> {
                 Box(
@@ -141,7 +124,7 @@ fun ExamDetailScreen(
             else -> {
                 // Display request details
                 Column(
->>>>>>> upstream/main
+
                     modifier = Modifier
                         .fillMaxSize()
                         .verticalScroll(rememberScrollState())
@@ -174,7 +157,8 @@ fun ExamDetailScreen(
             }
         }
     }
-}
+    }
+
 
 @Composable
 private fun StatusHeaderCard(request: DeferralRequest) {
@@ -256,7 +240,7 @@ private fun RequestDetailsCard(request: DeferralRequest) {
             )
 
             Spacer(modifier = Modifier.height(16.dp))
-            Divider()
+//            Divider()
             Spacer(modifier = Modifier.height(16.dp))
 
             Text(
@@ -365,6 +349,8 @@ private fun DetailRow(label: String, value: String) {
         )
     }
 }
+
+
 private fun formatDateTime(timestamp: Long): String {
     val sdf = SimpleDateFormat("MMM dd, yyyy 'at' hh:mm a", Locale.getDefault())
     return sdf.format(Date(timestamp))

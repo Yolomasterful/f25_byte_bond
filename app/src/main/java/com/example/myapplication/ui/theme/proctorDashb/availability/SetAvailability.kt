@@ -35,7 +35,7 @@ import com.example.myapplication.ui.theme.basicButton
 fun SetAvailability(navController: NavHostController) {
     MainLayout(
         navController = navController,
-        pageName = "Exam requirements"
+        pageName = "Set Availability"
 
     ) {
 

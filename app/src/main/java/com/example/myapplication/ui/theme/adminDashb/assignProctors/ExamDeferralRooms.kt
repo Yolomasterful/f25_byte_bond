@@ -16,11 +16,11 @@ import com.example.myapplication.ui.theme.inboxBox
 fun ExamDeferralRooms(navController: NavHostController) {
     MainLayout(
         navController = navController,
-        pageName = "Deferral Requests"
+        pageName = "Exam Deferral Rooms"
 
     ){
         Column(
-            verticalArrangement = Arrangement.Center,
+            verticalArrangement = Arrangement.Top,
             modifier = Modifier.fillMaxSize()
         ) {
 

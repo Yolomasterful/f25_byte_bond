@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
@@ -34,6 +35,7 @@ fun ViewSchedule(navController: NavHostController) {
                     Column {
                         //Add data for Class name here
                         //Add Data for Date here
+                        Text("Schedule goes here")
                     }
                     Column {
                         //Add data for status

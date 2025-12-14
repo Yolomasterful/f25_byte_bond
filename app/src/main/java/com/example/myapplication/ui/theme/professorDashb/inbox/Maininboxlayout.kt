@@ -2,7 +2,7 @@
 package com.example.myapplication.ui.theme.professorDashb.inbox
 
 import androidx.compose.foundation.background
-<<<<<<< HEAD
+
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -24,16 +24,15 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.runtime.getValue
-=======
+
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
->>>>>>> upstream/main
+
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
@@ -41,32 +40,37 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
-<<<<<<< HEAD
+
 //import com.example.myapplication.ui.theme.uSubTitle
 import com.example.myapplication.ui.theme.uTypetext
 //import com.example.myapplication.ui.theme.professorDashb.inbox.data.Message
 //import com.example.myapplication.ui.theme.professorDashb.inbox.data.MessagingRepository
-=======
+
 import com.example.myapplication.data.firebase.DeferralRequest
 import com.example.myapplication.data.firebase.FirestoreResult
 import com.example.myapplication.data.firebase.FirestoreService
->>>>>>> upstream/main
+
 import com.example.myapplication.ui.theme.whiteBox
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.util.*
 import android.widget.Toast
+import androidx.compose.ui.layout.ModifierLocalBeyondBoundsLayout
+
+
+//@Composable
+//fun MessageRequestsTabs(
+////    defaultTab: Int = 0,
+//    navController: NavHostController
+//)
+
 
 @Composable
-<<<<<<< HEAD
 fun MessageRequestsTabs(
     defaultTab: Int = 0,
-    navController: NavHostController
-) {
-=======
-fun MessageRequestsTabs(navController: NavHostController) {
->>>>>>> upstream/main
+    navController: NavHostController) {
+
     var selectedTab by remember { mutableStateOf(0) }
     val tabs = listOf("Messages", "Requests")
 
@@ -79,7 +83,9 @@ fun MessageRequestsTabs(navController: NavHostController) {
                 shape = RoundedCornerShape(1.dp)
             )
     ) {
-        Column {
+        Column (
+            modifier = Modifier.fillMaxHeight()
+        ){
             PrimaryTabRow(
                 selectedTabIndex = selectedTab,
                 containerColor = MaterialTheme.colorScheme.surface,
@@ -110,24 +116,29 @@ fun MessageRequestsTabs(navController: NavHostController) {
 
             Spacer(modifier = Modifier.height(16.dp))
 
+            Box(
+                modifier = Modifier
+                    .weight(1f)
+                    .fillMaxWidth()
+            ) {
             when (selectedTab) {
                 0 -> MessagesTab()
                 1 -> RequestsTab(navController)
+                }
             }
         }
-<<<<<<< HEAD
 
-        Spacer(modifier = Modifier.height(16.dp))
 
-        when (selectedTab) {
-            0 -> MessagesTab()
-            1 -> RequestsTab(navController)
-        }
+
+//        when (selectedTab) {
+//            0 -> MessagesTab()
+//            1 -> RequestsTab(navController)
+//        }
     }}
-=======
-    }
->>>>>>> upstream/main
-}
+
+
+
+
 
 @Composable
 fun MessagesTab() {
@@ -140,170 +151,171 @@ fun MessagesTab() {
 
 @Composable
 fun RequestsTab(navController: NavHostController) {
-<<<<<<< HEAD
+
     Column(modifier = Modifier.padding(16.dp)) {
-        whiteBox {
-            Column(modifier = Modifier.fillMaxWidth()) {
-                Text("Accepted Requests")
-                Spacer(modifier = Modifier.height(16.dp))
-                Button(
-                    shape = RoundedCornerShape(10.dp),
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .height(70.dp),
-                    onClick = {
-                        navController.navigate("ChoiceDetails")
-                    },
-                ) {
-                    Text(
-                        text = "Accepted request example",
-                    )
-                }
-            }
-        }
-            Spacer(modifier = Modifier.height(20.dp))
-            whiteBox{
-                Column(modifier = Modifier.fillMaxWidth()) {
-                Text("Denied Requests")
-                }
-            }
 
-=======
-    val firestoreService = remember { FirestoreService() }
-    val scope = rememberCoroutineScope()
-    val context = LocalContext.current
->>>>>>> upstream/main
+        val firestoreService = remember { FirestoreService() }
+        val scope = rememberCoroutineScope()
+        val context = LocalContext.current
 
-    var requests by remember { mutableStateOf<List<DeferralRequest>>(emptyList()) }
-    var isLoading by remember { mutableStateOf(true) }
-    var errorMessage by remember { mutableStateOf<String?>(null) }
-    var updatingRequestId by remember { mutableStateOf<String?>(null) }
 
-    fun loadRequests() {
-        isLoading = true
-        errorMessage = null
-        scope.launch {
-            when (val result = firestoreService.getAllPendingRequests()) {
-                is FirestoreResult.Success -> {
-                    requests = result.data
-                    isLoading = false
-                }
-                is FirestoreResult.Error -> {
-                    errorMessage = result.message
-                    isLoading = false
-                }
-            }
-        }
-    }
+        var requests by remember { mutableStateOf<List<DeferralRequest>>(emptyList()) }
+        var isLoading by remember { mutableStateOf(true) }
+        var errorMessage by remember { mutableStateOf<String?>(null) }
+        var updatingRequestId by remember { mutableStateOf<String?>(null) }
 
-    LaunchedEffect(Unit) {
-        loadRequests()
-    }
+        fun loadRequests() {
+            isLoading = true
+            errorMessage = null
+            scope.launch {
+                when (val result = firestoreService.getAllPendingRequests()) {
+                    is FirestoreResult.Success -> {
+                        requests = result.data
+                        isLoading = false
+                    }
 
-    Column(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(16.dp)
-    ) {
-        when {
-            isLoading -> {
-                Box(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(32.dp),
-                    contentAlignment = Alignment.Center
-                ) {
-                    CircularProgressIndicator()
-                }
-            }
-            errorMessage != null -> {
-                Column(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(16.dp),
-                    horizontalAlignment = Alignment.CenterHorizontally
-                ) {
-                    Text(
-                        text = "Error: $errorMessage",
-                        color = MaterialTheme.colorScheme.error,
-                        style = MaterialTheme.typography.bodyMedium
-                    )
-                    Spacer(modifier = Modifier.height(8.dp))
-                    Button(onClick = { loadRequests() }) {
-                        Text("Retry")
+                    is FirestoreResult.Error -> {
+                        errorMessage = result.message
+                        isLoading = false
                     }
                 }
             }
-            requests.isEmpty() -> {
-                Box(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(32.dp),
-                    contentAlignment = Alignment.Center
-                ) {
-                    Text(
-                        text = "No pending requests",
-                        style = MaterialTheme.typography.bodyLarge,
-                        color = Color.Gray
-                    )
+        }
+
+        LaunchedEffect(Unit) {
+            loadRequests()
+        }
+
+        Column(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(16.dp)
+        ) {
+            when {
+                isLoading -> {
+                    Box(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(32.dp),
+                        contentAlignment = Alignment.Center
+                    ) {
+                        CircularProgressIndicator()
+                    }
                 }
-            }
-            else -> {
-                LazyColumn(
-                    verticalArrangement = Arrangement.spacedBy(12.dp)
-                ) {
-                    items(requests) { request ->
-                        RequestCard(
-                            request = request,
-                            isUpdating = updatingRequestId == request.id,
-                            onAccept = {
-                                updatingRequestId = request.id
-                                scope.launch {
-                                    val reviewerEmail = FirebaseAuth.getInstance().currentUser?.email ?: "unknown"
-                                    when (val result = firestoreService.updateRequestStatus(
-                                        requestId = request.id,
-                                        status = "APPROVED",
-                                        reviewedBy = reviewerEmail,
-                                        reviewNotes = "Approved by professor"
-                                    )) {
-                                        is FirestoreResult.Success -> {
-                                            requests = requests.filter { it.id != request.id }
-                                            updatingRequestId = null
-                                            Toast.makeText(context, "Request approved", Toast.LENGTH_SHORT).show()
-                                        }
-                                        is FirestoreResult.Error -> {
-                                            updatingRequestId = null
-                                            Toast.makeText(context, "Failed: ${result.message}", Toast.LENGTH_LONG).show()
-                                        }
-                                    }
-                                }
-                            },
-                            onDeny = {
-                                updatingRequestId = request.id
-                                scope.launch {
-                                    val reviewerEmail = FirebaseAuth.getInstance().currentUser?.email ?: "unknown"
-                                    when (val result = firestoreService.updateRequestStatus(
-                                        requestId = request.id,
-                                        status = "DENIED",
-                                        reviewedBy = reviewerEmail,
-                                        reviewNotes = "Denied by professor"
-                                    )) {
-                                        is FirestoreResult.Success -> {
-                                            requests = requests.filter { it.id != request.id }
-                                            updatingRequestId = null
-                                            Toast.makeText(context, "Request denied", Toast.LENGTH_SHORT).show()
-                                        }
-                                        is FirestoreResult.Error -> {
-                                            updatingRequestId = null
-                                            Toast.makeText(context, "Failed: ${result.message}", Toast.LENGTH_LONG).show()
-                                        }
-                                    }
-                                }
-                            },
-                            onClick = {
-                                navController.navigate("ExamDetailScreen/${request.id}")
-                            }
+
+                errorMessage != null -> {
+                    Column(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(16.dp),
+                        horizontalAlignment = Alignment.CenterHorizontally
+                    ) {
+                        Text(
+                            text = "Error: $errorMessage",
+                            color = MaterialTheme.colorScheme.error,
+                            style = MaterialTheme.typography.bodyMedium
                         )
+                        Spacer(modifier = Modifier.height(8.dp))
+                        Button(onClick = { loadRequests() }) {
+                            Text("Retry")
+                        }
+                    }
+                }
+
+                requests.isEmpty() -> {
+                    Box(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(32.dp),
+                        contentAlignment = Alignment.Center
+                    ) {
+                        Text(
+                            text = "No pending requests",
+                            style = MaterialTheme.typography.bodyLarge,
+                            color = Color.Gray
+                        )
+                    }
+                }
+
+                else -> {
+                    LazyColumn(
+                        verticalArrangement = Arrangement.spacedBy(12.dp)
+                    ) {
+                        items(requests) { request ->
+                            RequestCard(
+                                request = request,
+                                isUpdating = updatingRequestId == request.id,
+                                onAccept = {
+                                    updatingRequestId = request.id
+                                    scope.launch {
+                                        val reviewerEmail =
+                                            FirebaseAuth.getInstance().currentUser?.email
+                                                ?: "unknown"
+                                        when (val result = firestoreService.updateRequestStatus(
+                                            requestId = request.id,
+                                            status = "APPROVED",
+                                            reviewedBy = reviewerEmail,
+                                            reviewNotes = "Approved by professor"
+                                        )) {
+                                            is FirestoreResult.Success -> {
+                                                requests = requests.filter { it.id != request.id }
+                                                updatingRequestId = null
+                                                Toast.makeText(
+                                                    context,
+                                                    "Request approved",
+                                                    Toast.LENGTH_SHORT
+                                                ).show()
+                                            }
+
+                                            is FirestoreResult.Error -> {
+                                                updatingRequestId = null
+                                                Toast.makeText(
+                                                    context,
+                                                    "Failed: ${result.message}",
+                                                    Toast.LENGTH_LONG
+                                                ).show()
+                                            }
+                                        }
+                                    }
+                                },
+                                onDeny = {
+                                    updatingRequestId = request.id
+                                    scope.launch {
+                                        val reviewerEmail =
+                                            FirebaseAuth.getInstance().currentUser?.email
+                                                ?: "unknown"
+                                        when (val result = firestoreService.updateRequestStatus(
+                                            requestId = request.id,
+                                            status = "DENIED",
+                                            reviewedBy = reviewerEmail,
+                                            reviewNotes = "Denied by professor"
+                                        )) {
+                                            is FirestoreResult.Success -> {
+                                                requests = requests.filter { it.id != request.id }
+                                                updatingRequestId = null
+                                                Toast.makeText(
+                                                    context,
+                                                    "Request denied",
+                                                    Toast.LENGTH_SHORT
+                                                ).show()
+                                            }
+
+                                            is FirestoreResult.Error -> {
+                                                updatingRequestId = null
+                                                Toast.makeText(
+                                                    context,
+                                                    "Failed: ${result.message}",
+                                                    Toast.LENGTH_LONG
+                                                ).show()
+                                            }
+                                        }
+                                    }
+                                },
+                                onClick = {
+                                    navController.navigate("ExamDetailScreen/${request.id}")
+                                }
+                            )
+                        }
                     }
                 }
             }
@@ -461,6 +473,7 @@ fun StatusBadge(status: String) {
         )
     }
 }
+
 
 fun formatTimestamp(timestamp: Long): String {
     val sdf = SimpleDateFormat("MMM dd, yyyy HH:mm", Locale.getDefault())
