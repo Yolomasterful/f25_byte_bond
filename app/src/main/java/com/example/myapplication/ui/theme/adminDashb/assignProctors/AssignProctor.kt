@@ -1,4 +1,4 @@
-package com.example.myapplication.ui.theme.professorDashb.inbox.requests
+package com.example.myapplication.ui.theme.adminDashb.assignProctors
 
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -22,16 +22,16 @@ import com.example.myapplication.ui.theme.uTypetext
 import com.example.myapplication.ui.theme.whiteBox
 
 @Composable
-fun ChoiceDetails(navController: NavHostController) {
+fun AssignProctor(navController: NavHostController) {
     MainLayout(
         navController = navController,
-        pageName = "Student Name",
+        pageName = "Room #Number",
         showBackArrow = false
 
     ){
         Spacer(modifier = Modifier.height(8.dp))
 
-        Text("is requesting an exam deferral for",
+        Text("Date of Exam",
             modifier = Modifier
                 .fillMaxWidth(),
             textAlign = TextAlign.Center,
@@ -40,9 +40,25 @@ fun ChoiceDetails(navController: NavHostController) {
 
         Spacer(modifier = Modifier.height(8.dp))
 
+        Text("11:00am - 1:00pm",
+            modifier = Modifier
+                .fillMaxWidth(),
+            textAlign = TextAlign.Center,
+            fontSize = 20.sp,
+        )
+
+        Spacer(modifier = Modifier.height(10.dp))
+
+        Text("Added Proctors:",
+            modifier = Modifier
+                .fillMaxWidth(),
+            textAlign = TextAlign.Start,
+            fontSize = 20.sp,
+        )
+        Spacer(modifier = Modifier.height(8.dp))
         whiteBox{
             //Insert Date from data here!
-            Text("Date goes here",
+            Text("Assigned proctor information",
                 modifier = Modifier
                     .fillMaxWidth(),
                 textAlign = TextAlign.Center,
@@ -52,16 +68,16 @@ fun ChoiceDetails(navController: NavHostController) {
 
         Spacer(modifier = Modifier.height(20.dp))
 
-        Text("Reason:",
+        Text("Available Proctors:",
             modifier = Modifier
                 .fillMaxWidth(),
-            textAlign = TextAlign.Center,
+            textAlign = TextAlign.Start,
             fontSize = 20.sp
         )
         Spacer(modifier = Modifier.height(8.dp))
         whiteBox{
             //Insert reason from data here!
-            Text("Reason goes here",
+            Text("Available proctor information",
                 modifier = Modifier
                     .fillMaxWidth(),
                 textAlign = TextAlign.Center,
@@ -70,46 +86,22 @@ fun ChoiceDetails(navController: NavHostController) {
         }
 
         Spacer(modifier = Modifier.height(20.dp))
-        Text("Accept request?",
-            modifier = Modifier
-                .fillMaxWidth(),
-            textAlign = TextAlign.Center,
-            fontSize = 20.sp)
-        Spacer(modifier = Modifier.height(10.dp))
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = 16.dp),
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-            Button(
-                onClick = {navController.navigate("ConfirmChoice")},
-                shape = RoundedCornerShape(10.dp),
-                modifier = Modifier
-                    .width(182.dp)
-                    .height(65.dp)
-            ) {
-                Text(
-                    text = "Yes",
-                    style = MaterialTheme.typography.uTypetext
-                )
-            }
-            Spacer(modifier = Modifier.width(10.dp))
-            Button(
-                onClick = {navController.navigate("RequestsPage")},
-                shape = RoundedCornerShape(10.dp),
-                modifier = Modifier
-                    .width(182.dp)
-                    .height(65.dp)
-            ) {
-                Text(
-                    text = "No",
-                    style = MaterialTheme.typography.uTypetext
-                )
-            }
 
+        Button(
+            shape = RoundedCornerShape(10.dp),
+            modifier = Modifier
+                .width(182.dp)
+                .height(65.dp)
+                .align(Alignment.CenterHorizontally),
+            onClick = { navController.navigate("ConfirmCode") },
+        ) {
+            Text(
+                text = "Confirm",
+                style = MaterialTheme.typography.uTypetext
+            )
         }
 
 
     }
 }
+

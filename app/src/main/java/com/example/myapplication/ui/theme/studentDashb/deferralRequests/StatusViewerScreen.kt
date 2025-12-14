@@ -254,7 +254,7 @@ fun DeferralRequestCard(
             // Review notes if available
             if (!request.reviewNotes.isNullOrBlank()) {
                 Spacer(modifier = Modifier.height(8.dp))
-                Divider()
+//                Divider()
                 Spacer(modifier = Modifier.height(8.dp))
 
                 Text(

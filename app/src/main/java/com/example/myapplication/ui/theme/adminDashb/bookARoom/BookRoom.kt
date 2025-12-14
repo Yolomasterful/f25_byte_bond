@@ -32,7 +32,7 @@ import com.example.myapplication.ui.theme.basicButton
 fun BookRoom(navController: NavHostController) {
     MainLayout(
         navController = navController,
-        pageName = "Exam requirements"
+        pageName = "Book a Room"
 
     ) {
 

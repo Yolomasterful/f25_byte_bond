@@ -19,14 +19,11 @@ import com.example.myapplication.ui.theme.whiteBox
 fun ExamReqSent(navController: NavHostController) {
     MainLayout(
         navController = navController,
-        pageName = "Exam Requirements Sent"
+        pageName = "Exam Requirements Sent",
+        showBackArrow = false,
+
 
     ) {
-        whiteBox{
-
-            Text("Data goes here")
-
-        }
 
         Spacer(modifier = Modifier.height(40.dp))
         basicButton(

@@ -35,7 +35,7 @@ import com.example.myapplication.ui.theme.basicButton
 fun SetAvailability(navController: NavHostController) {
     MainLayout(
         navController = navController,
-        pageName = "Exam requirements"
+        pageName = "Set Availability"
 
     ) {
 
@@ -61,7 +61,7 @@ fun SetAvailability(navController: NavHostController) {
             )
             Spacer(modifier = Modifier.height(6.dp))
             SearchDropdown(
-                //Add data retrieved infor here of outside this function?
+                //Add data retrieved info. here of outside this function?
                 options = listOf(
                     "Calender goes here!"
                 )
@@ -118,7 +118,7 @@ fun SetAvailability(navController: NavHostController) {
             Spacer(modifier = Modifier.height(20.dp))
 
             basicButton(
-                onClick = { navController.navigate("RoomBooked") },
+                onClick = { navController.navigate("ViewSchedule") },
                 imageContent = {
                     Image(
                         painter = painterResource(id = R.drawable.send_button),

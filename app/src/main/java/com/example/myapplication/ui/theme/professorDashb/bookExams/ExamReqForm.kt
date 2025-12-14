@@ -2,10 +2,23 @@ package com.example.myapplication.ui.theme.professorDashb.bookExams
 
 import android.widget.Toast
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.*
+
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
+
+import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -159,7 +172,7 @@ fun ExamReqForm(navController: NavHostController) {
                                                 "Exam request submitted successfully!",
                                                 Toast.LENGTH_LONG
                                             ).show()
-                                            navController.navigate("ExamReqSent") {
+                                            navController.navigate("UploadExam") {
                                                 popUpTo("ExamReqForm") { inclusive = true }
                                             }
                                         }
